@@ -2,10 +2,10 @@ package Ejercicio1.Entidades;
 
 public class Auto implements Vehiculo{
 
-    String marca;
-    String modelo;
-    int puertas;
-    String color;
+    private String marca;
+    private String modelo;
+    private int puertas;
+    private String color;
 
     public Auto() {
     }

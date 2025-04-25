@@ -2,11 +2,11 @@ package Ejercicio3;
 
 public class Verdura {
 
-     int id;
-     String nombre;
-     String color;
-     int calorías;
-     Boolean debeCocinarse;
+    private int id;
+    private String nombre;
+    private  String color;
+    private  int calorías;
+    private  Boolean debeCocinarse;
 
     public Verdura() {
 

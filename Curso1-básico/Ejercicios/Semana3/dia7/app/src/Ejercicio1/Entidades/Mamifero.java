@@ -19,6 +19,10 @@ public class Mamifero extends Animal{
         this.habitad = habitad;
     }
 
+    @Override
+    public void saludar() {
+        System.out.println("Hola soy un mamifero");
+    }
     public int getNumeroPatas() {
         return numeroPatas;
     }
@@ -51,9 +55,14 @@ public class Mamifero extends Animal{
         this.habitad = habitad;
     }
 
-    @Override
-    public String saludar() {
-        return "Hola soy  un mamifero";
 
+    @Override
+    public String toString() {
+        return "Mamifero{" +
+                "numeroPatas=" + numeroPatas +
+                ", tipoReproduccion='" + tipoReproduccion + '\'' +
+                ", colorPelaje='" + colorPelaje + '\'' +
+                ", habitad='" + habitad + '\'' +
+                '}';
     }
 }

@@ -2,15 +2,16 @@ package Ejercicio2;
 
 public class Persona {
 
-    int id;
-    String nombre;
-    int edad;
-    String direccion;
-    int telefono;
+    private int id;
+    private String nombre;
+    private int edad;
+    private String direccion;
+    private String telefono;
+
     public Persona() {
     }
 
-    public Persona(int id, String nombre, int edad, String direccion, int telefono) {
+    public Persona(int id, String nombre, int edad, String direccion, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
@@ -50,11 +51,11 @@ public class Persona {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

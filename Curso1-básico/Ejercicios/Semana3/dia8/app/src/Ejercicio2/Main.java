@@ -10,8 +10,8 @@ public class Main {
         Pago p1 = new Pago(232435353,"Abanca", TipoPago.EFECTIVO);
         Pago p2 = new Pago(323243553,"Santander", TipoPago.TARJETA_DEBITO);
 
-        System.out.println(p1.toString());
-        System.out.println(p2.toString());
+        p1.mostrarTipoPago();
+        p2.mostrarTipoPago();
 
     }
 }

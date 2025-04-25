@@ -2,9 +2,9 @@ package Ejercicio3.Entidades;
 
 public abstract  class Animal {
 
-    String nombre;
-    int patas;
-    String alimentacion;
+    private String nombre;
+    private int patas;
+    private String alimentacion;
 
 
     public Animal() {
@@ -39,6 +39,8 @@ public abstract  class Animal {
     public void setAlimentacion(String alimentacion) {
         this.alimentacion = alimentacion;
     }
+
+
 
     @Override
     public String toString() {

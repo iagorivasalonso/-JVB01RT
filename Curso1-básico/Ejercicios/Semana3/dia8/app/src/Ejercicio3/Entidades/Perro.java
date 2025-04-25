@@ -25,11 +25,14 @@ public class Perro extends Animal implements accionesAnimal {
     public String toString() {
         return "Perro{" +
                 "raza='" + raza + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", patas=" + patas +
-                ", alimentacion='" + alimentacion + '\'' +
+                ", nombre='" + getNombre() + '\'' +
+                ", patas=" + getPatas() +
+                ", alimentacion='" + getAlimentacion() + '\'' +
                 '}';
     }
+
+
+
 
     @Override
     public void hacerSonido() {

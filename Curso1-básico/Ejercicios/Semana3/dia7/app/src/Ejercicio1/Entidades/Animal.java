@@ -2,11 +2,11 @@ package Ejercicio1.Entidades;
 
 public class Animal {
 
-    int id;
-    String nombre;
-    int edad;
-    String  tipoPiel;
-    String tipoAlimentacion;
+    private int id;
+    private String nombre;
+    private int edad;
+    private String  tipoPiel;
+    private String tipoAlimentacion;
 
     public Animal() {
 
@@ -18,6 +18,12 @@ public class Animal {
         this.edad = edad;
         this.tipoPiel = tipoPiel;
         this.tipoAlimentacion = tipoAlimentacion;
+    }
+
+
+    public void saludar() {
+
+        System.out.println("Hola soy  un animal");
     }
 
     public int getId() {
@@ -58,12 +64,6 @@ public class Animal {
 
     public void setTipoAlimentacion(String tipoAlimentacion) {
         this.tipoAlimentacion = tipoAlimentacion;
-    }
-
-
-    public String saludar() {
-
-        return "Hola soy  un animal";
     }
 
     @Override

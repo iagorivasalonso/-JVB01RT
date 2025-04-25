@@ -16,14 +16,14 @@ public class Main {
         }
         System.out.println("\n cambio productos \n");
 
-        verdura[0].nombre="Remolacha";
-        verdura[0].calorías= 43;
-        verdura[0].debeCocinarse=true;
+        verdura[0].setNombre("Remolacha");
+        verdura[0].setCalorías(43);
+        verdura[0].setDebeCocinarse(true);
 
-        verdura[3].nombre="Zanahoria";
-        verdura[3].calorías= 41;
-        verdura[3].color ="Naranja";
-        verdura[3].debeCocinarse=true;
+        verdura[3].setNombre("Zanahoria");
+        verdura[3].setCalorías(43);
+        verdura[3].setColor("Naranja");
+        verdura[3].setDebeCocinarse(true);
 
         for (int i = 0; i < verdura.length ; i++) {
             System.out.println(verdura[i].toString());
@@ -32,7 +32,7 @@ public class Main {
         System.out.println("\n las verduras verdes son \n");
 
         for (int i = 0; i < verdura.length ; i++) {
-            if(verdura[i].color.equals("verde"))
+            if(verdura[i].getColor().equals("verde"))
             System.out.println(verdura[i].toString());
         }
     }

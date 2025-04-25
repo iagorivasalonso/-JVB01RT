@@ -8,6 +8,6 @@ public class Main {
 
        Persona persona = new Persona("Juan","123","BuenosAires");
 
-        System.out.println(persona.toString());
+       persona.mostrarDireccion();
     }
 }

@@ -2,9 +2,9 @@ package Ejercicio2.Entidades;
 
 public class Pago {
 
-    int numero;
-    String banco;
-    TipoPago tipo;
+   private int numero;
+   private String banco;
+   private TipoPago tipoPago;
 
     public Pago() {
     }
@@ -12,7 +12,11 @@ public class Pago {
     public Pago(int numero, String banco, TipoPago tipo) {
         this.numero = numero;
         this.banco = banco;
-        this.tipo = tipo;
+        this.tipoPago = tipo;
+    }
+
+    public void mostrarTipoPago() {
+        System.out.println("El tipo de pago es " + this.tipoPago);
     }
 
     public int getNumero() {
@@ -31,12 +35,12 @@ public class Pago {
         this.banco = banco;
     }
 
-    public TipoPago getTipo() {
-        return tipo;
+    public TipoPago getTipoPago() {
+        return tipoPago;
     }
 
-    public void setTipo(TipoPago tipo) {
-        this.tipo = tipo;
+    public void setTipoPago(TipoPago tipoPago) {
+        this.tipoPago = tipoPago;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class Pago {
         return "Pago{" +
                 "numero=" + numero +
                 ", banco='" + banco + '\'' +
-                ", tipo=" + tipo +
+                ", tipo=" + tipoPago +
                 '}';
     }
 }

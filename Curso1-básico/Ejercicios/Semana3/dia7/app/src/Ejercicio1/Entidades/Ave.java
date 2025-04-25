@@ -15,6 +15,11 @@ public class Ave extends Animal{
         this.envergaduraAlas = envergaduraAlas;
     }
 
+    @Override
+    public void saludar() {
+        System.out.println("Hola soy  un ave");
+    }
+
     public int getEnvergaduraAlas() {
         return envergaduraAlas;
     }
@@ -47,10 +52,14 @@ public class Ave extends Animal{
         this.tipoPico = tipoPico;
     }
 
-    @Override
-    public String saludar() {
-        return "Hola soy  un ave";
 
+    @Override
+    public String toString() {
+        return "Ave{" +
+                "envergaduraAlas=" + envergaduraAlas +
+                ", tipoVuelo='" + tipoVuelo + '\'' +
+                ", colorPlumaje='" + colorPlumaje + '\'' +
+                ", tipoPico='" + tipoPico + '\'' +
+                '}';
     }
-    
 }

@@ -29,6 +29,10 @@ public class Reptil extends Animal{
     public String getTipoEscamas() {
         return tipoEscamas;
     }
+    @Override
+    public void saludar() {
+        System.out.println("Hola soy un reptil");
+    }
 
     public void setTipoEscamas(String tipoEscamas) {
         this.tipoEscamas = tipoEscamas;
@@ -50,9 +54,14 @@ public class Reptil extends Animal{
         this.habitad = habitad;
     }
 
-    @Override
-    public String saludar() {
 
-        return "Hola soy  un reptil";
+    @Override
+    public String toString() {
+        return "Reptil{" +
+                "longitud=" + longitud +
+                ", tipoEscamas='" + tipoEscamas + '\'' +
+                ", tipoVeneno='" + tipoVeneno + '\'' +
+                ", habitad='" + habitad + '\'' +
+                '}';
     }
 }
