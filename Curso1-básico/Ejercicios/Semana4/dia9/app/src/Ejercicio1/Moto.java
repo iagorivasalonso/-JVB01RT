@@ -2,8 +2,8 @@ package Ejercicio1;
 
 public class Moto extends Vehiculo implements Combustion{
 
-    int cilindrada;
-    String tipoMotor;
+    private int cilindrada;
+    private String tipoMotor;
 
     public Moto() {
 

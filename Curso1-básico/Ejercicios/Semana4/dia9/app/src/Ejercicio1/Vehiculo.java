@@ -2,12 +2,12 @@ package Ejercicio1;
 
 public abstract class Vehiculo {
 
-    int id;
-    String placa;
-    String marca;
-    String modelo;
-    int anho;
-    double costo;
+    private int id;
+    private String placa;
+    private String marca;
+    private String modelo;
+    private int anho;
+    private double costo;
 
     public Vehiculo() {
     }

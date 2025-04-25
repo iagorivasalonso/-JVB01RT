@@ -2,8 +2,8 @@ package Ejercicio1;
 
 public class Auto extends Vehiculo implements Electrico{
 
-    String capacidadBateria;
-    int autonomia;
+    private String capacidadBateria;
+    private int autonomia;
 
     public Auto() {
     }

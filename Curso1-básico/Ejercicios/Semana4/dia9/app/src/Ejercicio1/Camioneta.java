@@ -2,8 +2,8 @@ package Ejercicio1;
 
 public class Camioneta extends  Vehiculo implements Combustion{
 
-    int capacidadTanque;
-    int consumoCombustible;
+    private int capacidadTanque;
+    private int consumoCombustible;
 
 
     public Camioneta() {

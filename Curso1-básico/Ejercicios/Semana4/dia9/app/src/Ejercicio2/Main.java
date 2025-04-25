@@ -34,8 +34,8 @@ public class Main {
 
         for (Producto prod : misProductos) {
 
-            if (precioVentaMax < prod.precioVenta)
-                precioVentaMax= prod.precioVenta;
+            if (precioVentaMax < prod.getPrecioVenta())
+                precioVentaMax= prod.getPrecioVenta();
         }
 
         System.out.println("el  precio mas alto  de  venta es " +precioVentaMax);
@@ -44,8 +44,8 @@ public class Main {
 
         for (Producto prod : misProductos) {
 
-            if (precioCostoMin > prod.precioCosto)
-                precioCostoMin = prod.precioCosto;
+            if (precioCostoMin > prod.getPrecioCosto())
+                precioCostoMin = prod.getPrecioCosto();
         }
 
 
@@ -63,9 +63,9 @@ public class Main {
         System.out.println(" \n \n disminuir unidades: 3 discos duros menos \n");
         for (Producto prod : misProductos) {
 
-            if(productoMayorStock < prod.cantidadStock)
+            if(productoMayorStock < prod.getCantidadStock())
             {
-                productoMayorStock = prod.cantidadStock;
+                productoMayorStock = prod.getCantidadStock();
                 prod.setCantidadStock(prod.getCantidadStock()-3);
             }
 

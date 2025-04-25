@@ -2,13 +2,13 @@ package Ejercicio2;
 
 public class Producto {
 
-    int codigo;
-    String nombre;
-    String marca;
-    String tipo;
-    double precioCosto;
-    double precioVenta;
-    int cantidadStock;
+    private int codigo;
+    private String nombre;
+    private String marca;
+    private String tipo;
+    private double precioCosto;
+    private  double precioVenta;
+    private   int cantidadStock;
 
     public Producto() {
     }
