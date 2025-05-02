@@ -5,12 +5,12 @@ import java.time.Period;
 
 public class FechaUtil {
 
-    public static String calcularDiferenciaDias(LocalDate fecha1, LocalDate fecha2) {
+    public static Integer calcularDiferenciaDias(LocalDate fecha1, LocalDate fecha2) {
 
 
-        String diferenciaDias = ""+ Period.between(fecha1, fecha2);
+        Period periodo = Period.between(fecha1, fecha2);
 
-        return diferenciaDias;
+        return periodo.getDays();
     }
 
 }

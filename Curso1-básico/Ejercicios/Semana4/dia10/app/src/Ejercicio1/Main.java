@@ -11,9 +11,9 @@ public class Main {
         LocalDate ida = LocalDate.of(2024,3,18);
         LocalDate vuelta = LocalDate.of(2024,3,20);
 
-        String dias = FechaUtil.calcularDiferenciaDias(ida,vuelta);
+        long dias = FechaUtil.calcularDiferenciaDias(ida,vuelta);
 
-        System.out.println(dias);
+        System.out.println("La diferencia de dias son "+dias);
 
     }
 }

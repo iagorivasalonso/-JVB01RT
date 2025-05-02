@@ -9,18 +9,21 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        int opcion = -1;
+        int opcion = 0;
 
 
         do{
-            System.out.println("\nSeleccionar opción: \n\n" +
-                    "1. Bienvenida \n" +
-                    "2. Fecha actual \n" +
-                    "3. Numero aleatorio entre 1 y 100 \n" +
-                    "4. Tabla del 5 \n" +
-                    "0. Salir");
 
-            opcion = scanner.nextInt();
+            imprimirMenu();
+
+            try{
+                opcion = scanner.nextInt();
+            } catch (Exception e){
+                System.out.println("Operacion no valida");
+                scanner.next();
+                continue;
+            }
+
 
             if(opcion >-1 && opcion < 5)
             {
@@ -28,6 +31,10 @@ public class Main {
 
                 switch (opcion)
                 {
+                    case 0:
+                        System.out.println("adios");
+                        break;
+
                     case 1:
                         Metodos.bienvenida();
                         break;
@@ -59,5 +66,17 @@ public class Main {
 
 
         scanner.close();
+    }
+
+    private static void imprimirMenu() {
+
+        System.out.println("\nSeleccionar opción: \n\n" +
+                "1. Bienvenida \n" +
+                "2. Fecha actual \n" +
+                "3. Numero aleatorio entre 1 y 100 \n" +
+                "4. Tabla del 5 \n" +
+                "0. Salir");
+
+
     }
 }
