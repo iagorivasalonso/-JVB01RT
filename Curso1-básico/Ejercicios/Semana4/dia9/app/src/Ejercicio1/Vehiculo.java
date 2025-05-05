@@ -1,5 +1,7 @@
 package Ejercicio1;
 
+import java.time.LocalDate;
+
 public abstract class Vehiculo {
 
     private int id;
@@ -69,16 +71,11 @@ public abstract class Vehiculo {
         this.costo = costo;
     }
 
-    public int calcularAntiguedad( int anho){
-
-
-        int anhoActual = 2025;
-
-        int antiguedad = anhoActual - anho;
-
-
-        return antiguedad;
+    public int calcularAntiguedad() {
+        return LocalDate.now().getYear() - this.getAnho();
     }
+
+
     @Override
     public String toString() {
         return "Vehiculo{" +

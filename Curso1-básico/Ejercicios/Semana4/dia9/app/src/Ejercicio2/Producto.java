@@ -6,8 +6,8 @@ public class Producto {
     private String nombre;
     private String marca;
     private String tipo;
-    private double precioCosto;
-    private  double precioVenta;
+    private Double precioCosto;
+    private  Double precioVenta;
     private   int cantidadStock;
 
     public Producto() {

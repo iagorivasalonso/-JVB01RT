@@ -1,6 +1,8 @@
 package Ejercicio1;
 
-public class Moto extends Vehiculo implements Combustion{
+import Ejercicio1.Interfaces.Combustion;
+
+public class Moto extends Vehiculo implements Combustion {
 
     private int cilindrada;
     private String tipoMotor;
@@ -38,6 +40,6 @@ public class Moto extends Vehiculo implements Combustion{
 
     @Override
     public void recargarConbustible() {
-        System.out.println("Esta recargando con gasolina");
+        System.out.println("Recargando combustible de la moto con cilindrada " + this.cilindrada);
     }
 }

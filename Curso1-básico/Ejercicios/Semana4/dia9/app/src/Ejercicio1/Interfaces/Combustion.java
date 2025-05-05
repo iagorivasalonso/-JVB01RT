@@ -1,8 +1,7 @@
-package Ejercicio1;
+package Ejercicio1.Interfaces;
 
 public interface Combustion {
 
-    void cargarEnergia();
-
-    void recargarConbustible();
+    public void cargarEnergia();
+    public void recargarConbustible();
 }

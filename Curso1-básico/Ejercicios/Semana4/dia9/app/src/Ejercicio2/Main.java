@@ -30,52 +30,62 @@ public class Main {
         Producto producto10 = new Producto(10, "portátil", "lenovo", "i5, 8GB RAM, 256GB SSD", 6, 500,5);
         misProductos.add(producto10);
 
-        double precioVentaMax = 0;
+        double precioVentaMax = Double.MIN_VALUE;
+        Producto productoMaxPrecioVenta = null;
 
         for (Producto prod : misProductos) {
 
             if (precioVentaMax < prod.getPrecioVenta())
-                precioVentaMax= prod.getPrecioVenta();
+                productoMaxPrecioVenta= prod;
         }
 
-        System.out.println("el  precio mas alto  de  venta es " +precioVentaMax);
+        System.out.println("El producto "+productoMaxPrecioVenta.getNombre()+" Es el producto mas caro");
 
-        double precioCostoMin = 10000;
+        double precioCostoMin = Double.MAX_VALUE;
+        Producto productoMinStock = null;
 
         for (Producto prod : misProductos) {
 
-            if (precioCostoMin > prod.getPrecioCosto())
+            if (precioCostoMin > prod.getPrecioCosto()){
                 precioCostoMin = prod.getPrecioCosto();
-        }
-
-
-        System.out.println("el  precio mas bajo  de  costo es " +precioCostoMin);
-
-        System.out.println("Todos los productos sin el 5");
-        misProductos.remove(5);
-
-        for (Producto prod : misProductos) {
-
-            System.out.println(prod.toString());
-        }
-
-        int productoMayorStock = 0;
-        System.out.println(" \n \n disminuir unidades: 3 discos duros menos \n");
-        for (Producto prod : misProductos) {
-
-            if(productoMayorStock < prod.getCantidadStock())
-            {
-                productoMayorStock = prod.getCantidadStock();
-                prod.setCantidadStock(prod.getCantidadStock()-3);
+                productoMinStock= prod;
             }
 
         }
 
-        for (Producto prod : misProductos) {
+        System.out.println("El producto "+productoMinStock.getNombre()+" Es el producto mas barato");
+        System.out.println("el  precio mas bajo  de  costo es " +precioCostoMin);
 
-            System.out.println(prod.toString());
+        System.out.println("Todos los productos sin el 5");
+
+        if(misProductos.size() > 5){
+            Producto productoEliminado = misProductos.remove(5);
+            System.out.println("Se elimino el producto en la posicion 5 " + productoEliminado.getNombre());
+        } else {
+            System.out.println("No existe producto en la posicion 5");
         }
 
+        int maxStock = Integer.MAX_VALUE;
+        Producto productoMaxStock = null;
+
+        for (Producto prod : misProductos) {
+
+            if (precioCostoMin > prod.getPrecioCosto()){
+                precioCostoMin = prod.getPrecioCosto();
+                productoMaxStock= prod;
+            }
+
+        }
+
+        if(productoMaxStock != null)
+        {
+            productoMaxStock.setCantidadStock(maxStock-3);
+            System.out.println("El producto con más stock es " + productoMaxStock.getNombre());
+            System.out.println("Nueva cantidad en stock: " + productoMaxStock.getCantidadStock());
+
+        }else{
+            System.out.println("no hay productos en el inventario");
+        }
 
 
     }

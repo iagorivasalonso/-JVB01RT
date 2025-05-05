@@ -1,7 +1,7 @@
-package Ejercicio1;
+package Ejercicio1.Interfaces;
 
 public interface Electrico {
 
-    void cargarEnergia();
-    void recargarCombustible();
+    public void cargarEnergia();
+    public void recargarCombustible();
 }

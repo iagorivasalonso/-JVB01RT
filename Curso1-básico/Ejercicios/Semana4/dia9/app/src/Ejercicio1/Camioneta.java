@@ -1,16 +1,23 @@
 package Ejercicio1;
 
-public class Camioneta extends  Vehiculo implements Combustion{
+import Ejercicio1.Interfaces.Combustion;
+
+public class Camioneta extends  Vehiculo implements Combustion {
 
     private int capacidadTanque;
-    private int consumoCombustible;
+    private Double consumoCombustible;
 
 
     public Camioneta() {
 
     }
 
-    public Camioneta(int id, String placa, String marca, String modelo, int anho, double costo, int capacidadTanque, int consumoCombustible) {
+
+    public int calcularAntiguedad(int anho) {
+        return 0;
+    }
+
+    public Camioneta(int id, String placa, String marca, String modelo, int anho, double costo, int capacidadTanque, Double consumoCombustible) {
         super(id, placa, marca, modelo, anho, costo);
         this.capacidadTanque = capacidadTanque;
         this.consumoCombustible = consumoCombustible;
@@ -24,11 +31,11 @@ public class Camioneta extends  Vehiculo implements Combustion{
         this.capacidadTanque = capacidadTanque;
     }
 
-    public int getConsumoCombustible() {
+    public Double getConsumoCombustible() {
         return consumoCombustible;
     }
 
-    public void setConsumoCombustible(int consumoCombustible) {
+    public void setConsumoCombustible(Double consumoCombustible) {
         this.consumoCombustible = consumoCombustible;
     }
 
@@ -39,6 +46,6 @@ public class Camioneta extends  Vehiculo implements Combustion{
 
     @Override
     public void recargarConbustible() {
-        System.out.println("Esta recargando con gasolina");
+        System.out.println("Recargando combustible de la camioneta con capacidad del tanque "+this.capacidadTanque);
     }
 }

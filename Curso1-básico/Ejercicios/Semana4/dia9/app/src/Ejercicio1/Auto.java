@@ -1,29 +1,30 @@
 package Ejercicio1;
 
-public class Auto extends Vehiculo implements Electrico{
+import Ejercicio1.Interfaces.Electrico;
 
-    private String capacidadBateria;
+import java.time.LocalDate;
+
+public class Auto extends Vehiculo implements Electrico {
+
+    private int capacidadBateria;
     private int autonomia;
 
     public Auto() {
     }
 
-    public Auto(String capacidadBateria, int autonomia) {
-        this.capacidadBateria = capacidadBateria;
-        this.autonomia = autonomia;
-    }
 
-    public Auto(int id, String placa, String marca, String modelo, int anho, double costo, String capacidadBateria, int autonomia) {
+
+    public Auto(int id, String placa, String marca, String modelo, int anho, double costo, int capacidadBateria, int autonomia) {
         super(id, placa, marca, modelo, anho, costo);
         this.capacidadBateria = capacidadBateria;
         this.autonomia = autonomia;
     }
 
-    public String getCapacidadBateria() {
+    public int getCapacidadBateria() {
         return capacidadBateria;
     }
 
-    public void setCapacidadBateria(String capacidadBateria) {
+    public void setCapacidadBateria(int capacidadBateria) {
         this.capacidadBateria = capacidadBateria;
     }
 
@@ -36,14 +37,16 @@ public class Auto extends Vehiculo implements Electrico{
     }
 
 
-
     @Override
     public void cargarEnergia() {
-        System.out.println("Esta cargando con electricidad");
+
+        System.out.println("Esta cargando con electricidad, tiene una capacided de"+this.capacidadBateria+" mah");
     }
 
     @Override
     public void recargarCombustible() {
+
         System.out.println("Esta recargando con electricidad");
     }
+
 }
