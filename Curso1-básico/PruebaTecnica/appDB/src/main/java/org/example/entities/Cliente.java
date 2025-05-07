@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-
+@Entity(name="clientes")
 public class Cliente {
 
     @Id
