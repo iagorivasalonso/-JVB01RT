@@ -4,20 +4,24 @@ import Ejercicio1.utils.Utils;
 
 public class Main {
     public static void main(String[] args) {
-        int cantidadArray = 1;
-         String [] nombres ={};
+        int cantidadArray = 4;
+         String [] nombres = new String[cantidadArray];
 
         String nombre1 = "Vlvo";
 
-        Utils.cargarDatos(nombres,"volvo",cantidadArray);
-
-        Utils.cargarDatos(nombres,"v00olvo",cantidadArray);
-
-         //comprobar si existe
-
-
+        Utils.cargarDatos(nombres,"volvo");
+        Utils.cargarDatos(nombres,"Renault");
+        Utils.cargarDatos(nombres,"Citroen");
+        Utils.cargarDatos(nombres,"Seat");
+        Utils.cargarDatos(nombres,"Mercedes");
         comprueba(nombres,nombre1);
         int pos= 1;
+
+        try{
+            System.out.println("Elemento seleccionado"+Utils.getElement(nombres,11));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.err.println("No existe la posicion");
+        }
 
          
     }

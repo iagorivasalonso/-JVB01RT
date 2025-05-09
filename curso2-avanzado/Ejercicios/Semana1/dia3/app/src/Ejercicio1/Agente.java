@@ -54,13 +54,13 @@ public class Agente extends Thread{
         for (int i = 0; i < 10; i++)
         {
             System.out.println(this.nombre+" Tiene la consulta de "+this.consulta);
-/*
+
             try {
-              ///  Thread.sleep((new Random().nextInt()));
+                Thread.sleep(((new Random().nextInt(20))+1)*1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-*/
+
             System.out.println("fin de llamada de " +this.nombre);
         }
     }

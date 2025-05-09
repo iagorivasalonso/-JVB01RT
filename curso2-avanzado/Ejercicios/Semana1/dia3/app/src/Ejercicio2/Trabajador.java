@@ -2,15 +2,15 @@ package Ejercicio2;
 
 public class Trabajador implements Runnable {
 
+    private Estacion estac;
     private String nombre;
-    private String tarea;
 
     public Trabajador() {
     }
 
-    public Trabajador(String nombre, String tarea) {
+    public Trabajador(String nombre, Estacion estac) {
         this.nombre = nombre;
-        this.tarea = tarea;
+        this.estac = estac;
     }
 
     public String getNombre() {
@@ -21,25 +21,38 @@ public class Trabajador implements Runnable {
         this.nombre = nombre;
     }
 
-    public String getTarea() {
-        return tarea;
+    public Estacion getEstac() {
+        return estac;
     }
 
-    public void setTarea(String tarea) {
-        this.tarea = tarea;
+    public void setEstac(Estacion estac) {
+        this.estac = estac;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i <6; i++)
-        {
-            System.out.println("El trabajador "+this.nombre+" tiene que"+this.tarea);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println("fin de la accion");
+        estac.ensamblar(nombre);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        estac.controlar(nombre);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        estac.embalar(nombre);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

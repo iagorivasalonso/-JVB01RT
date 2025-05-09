@@ -12,5 +12,7 @@ public class Main {
         agente1.join();
         agente2.join();
 
+        System.out.println("Fin hilo principal");
+
     }
 }

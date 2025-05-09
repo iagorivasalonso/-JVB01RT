@@ -5,10 +5,18 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Runnable miRunnable1 = new Trabajador("Javier","ensabla el mueble");
-        Runnable miRunnable2 = new Trabajador("Juan","embala Mueble");
+        Estacion est = new Estacion();
 
-        miRunnable1.run();
-        miRunnable2.run();
+        int personas = 3;
+
+        for (int i = 0; i < personas; i++)
+        {
+            Thread persona = new Thread(new Trabajador(" Javier ", est));
+            persona.start();
+        }
+
+
+
+
     }
 }
