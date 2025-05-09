@@ -1,5 +1,7 @@
 package Ejercicio1;
 
+import java.util.Random;
+
 public class Agente extends Thread{
 
     private String nombre;
@@ -52,13 +54,13 @@ public class Agente extends Thread{
         for (int i = 0; i < 10; i++)
         {
             System.out.println(this.nombre+" Tiene la consulta de "+this.consulta);
-
+/*
             try {
-                Thread.sleep(20);
+              ///  Thread.sleep((new Random().nextInt()));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
+*/
             System.out.println("fin de llamada de " +this.nombre);
         }
     }

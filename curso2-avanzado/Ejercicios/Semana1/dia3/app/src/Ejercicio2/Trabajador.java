@@ -39,7 +39,7 @@ public class Trabajador implements Runnable {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("gin de la accion");
+            System.out.println("fin de la accion");
         }
     }
 }
