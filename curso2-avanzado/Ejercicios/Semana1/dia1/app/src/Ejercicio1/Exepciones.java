@@ -5,6 +5,23 @@ import java.util.Date;
 
 public class Exepciones {
 
+    public String validarNoVacio (String dato) {
+
+        String datoCorrecto = "";
+
+
+            if (!dato.isEmpty()) {
+                 datoCorrecto = dato;
+            }
+            else
+            {
+                System.err.println("no puede ir vacio");
+            }
+
+
+
+      return datoCorrecto;
+    }
     public Date validarFecha(String fechaTexto) {
 
         Date fechaValida = null;
@@ -18,5 +35,4 @@ public class Exepciones {
         }
        return fechaValida;
     }
-
 }

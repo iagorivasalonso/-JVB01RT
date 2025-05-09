@@ -4,11 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws nosepuedereservar{
 
         Scanner sc = new Scanner(System.in);
 
         Exepciones excep = new Exepciones();
+
+        int asientosDisponibles = 22;
 
         String nombre = " ";
         String destino = " ";
@@ -16,12 +18,12 @@ public class Main {
         int asientosDeseados = 0;
 
         System.out.println("¿cual es su nombre?");
-        nombre = sc.nextLine();
+        nombre = excep.validarNoVacio(sc.nextLine());
         System.out.println("¿cual es su destino?");
-        destino = sc.nextLine();
+        destino = excep.validarNoVacio(sc.nextLine());
 
         System.out.println("¿En que fecha se va formato dd/MM/yyyy?");
-        String  fechaTexto = sc.nextLine();
+        String  fechaTexto = excep.validarNoVacio(sc.nextLine());
         excep.validarFecha(fechaTexto);
         System.out.println("¿Cuantos asientos desea?");
 
@@ -30,9 +32,15 @@ public class Main {
         } catch (InputMismatchException e) {
             System.err.println("no es un numero Entero");
         }
-         reservaVuelo rv = new reservaVuelo(nombre,destino,fechaViaje,asientosDeseados);
 
-        System.out.println(rv.toString());
-
+        if(asientosDeseados > asientosDisponibles)
+        {
+            throw new nosepuedereservar("no tenemos esa cantidad de asientos");
+        }
+        else{
+            reservaVuelo rv = new reservaVuelo(nombre,destino,fechaViaje,asientosDeseados);
+            System.out.println(rv.toString());
+        }
+        
     }
 }
