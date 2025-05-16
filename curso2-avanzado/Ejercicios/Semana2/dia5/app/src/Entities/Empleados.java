@@ -4,13 +4,12 @@ public class Empleados {
 
     private String nombre;
     private Double salario;
-    private String categoria;
+    private Categoria categoria;
 
     public Empleados() {
-
     }
 
-    public Empleados(String nombre, Double salario, String categoria) {
+    public Empleados(String nombre, Double salario, Categoria categoria) {
         this.nombre = nombre;
         this.salario = salario;
         this.categoria = categoria;
@@ -32,20 +31,20 @@ public class Empleados {
         this.salario = salario;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
     @Override
     public String toString() {
-        return "Empleado{" +
+        return "Empleados{" +
                 "nombre='" + nombre + '\'' +
                 ", salario=" + salario +
-                ", categoria='" + categoria + '\'' +
+                ", categoria=" + categoria +
                 '}';
     }
 }
