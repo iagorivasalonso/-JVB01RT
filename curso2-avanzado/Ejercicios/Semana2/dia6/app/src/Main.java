@@ -19,15 +19,32 @@ public class Main {
         eventos.add(new Evento("cenaPersonalTemporada",LocalDate.of(2025, 9, 22),"cat1"));
 
 
-        LocalDate fechaBuscada = LocalDate.of(2005, 6, 22);
+        //Eventos fecha especifica
+        LocalDate fechaBuscada = LocalDate.of(2025, 9, 22);
 
         List<Evento>eventosDia = eventos.stream().filter( evento -> evento.getFecha().isEqual(fechaBuscada)).toList();
-        System.out.println(eventosDia);
+
+        if(eventosDia.isEmpty())
+        {
+            System.out.println("no tienes eventos");
+        }
+        else
+        {
+            System.out.println("eventos");
+            System.out.println(eventosDia);
+        }
+
+
 
         Map<String,Integer> eventosCategoria = eventos.stream().collect(Collectors.groupingBy(Evento::getCategoria,Collectors.summingInt(e->1)));
         System.out.println(eventosCategoria);
 
-        Optional<Evento>eventoProx = eventos.stream().filter(e-> !e.getFecha().isBefore(LocalDate.now())).min(Comparator.comparing(Evento::getFecha));
-        System.out.println(eventoProx);
+        Optional<Evento>eventoProx = eventos.stream().filter(e-> e.getFecha().isAfter(LocalDate.now())).sorted(Comparator.comparing(Evento::getFecha)).findFirst();
+
+       if(eventoProx.isPresent())
+           System.out.println(eventoProx.get());
+
+       //eventos a partir de hoy
+
     }
 }

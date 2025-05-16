@@ -1,9 +1,7 @@
-package version2Optionals;
-
 import entityes.Auto;
+import version1.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -11,22 +9,69 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        ArrayList<Auto> inventario = new ArrayList<Auto>();
+        ArrayList<Auto> auto = new ArrayList<Auto>();
 
-        InventarioAutos.agregar(inventario, new Auto("renault", "modus", 2007, 12.000));
-        InventarioAutos.agregar(inventario, new Auto("citroen", "Saxo", 2002, 13.000));
-        InventarioAutos.agregar(inventario, new Auto("citroen", "Xara", 2002, 15.000));
+        auto.add(new Auto("renault", "modus", 2007, 12.000));
+        auto.add(new Auto("citroen", "Saxo", 2002, 13.000));
+        auto.add(new Auto("citroen", "xara", 2002, 15.000));
 
-        List<Auto> citroen  = InventarioAutos.buscarPor(inventario, a -> a.getMarca().equalsIgnoreCase("citroen"));
-        System.out.println("autos citroen"+citroen);
+        int opcion = -1;
 
-        List<Auto> autonho  = InventarioAutos.buscarPor(inventario, a -> a.getAnho()==2002);
-        System.out.println("autos año 2002"+autonho);
+        do {
 
-        //falta algo
+            System.out.println("¿Que desea hacer? \n \n" +
+                    "1. Agregar auto al inventario \n" +
+                    "2. Buscar autos por marca o año \n" +
+                    "3. Calcular valor del inventario \n" +
+                    "0. Salir");
 
-       double suma =InventarioAutos.sumaElementos(inventario, a -> a.getPrecio());
+            opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    Auto nuevo = Utils.crearAuto(sc);
+                    auto.add(nuevo);
 
-        System.out.println("La suma es " +suma);
+                    for (int i = 0; i < auto.size(); i++) {
+                        System.out.println(auto.get(i).toString());
+                    }
+                    break;
+
+                case 2:
+                    opcion = Buscar_por(sc);
+
+                    if(opcion == 0)
+                    {      /// favorece la vuelta a menu principal
+                        opcion = -1;
+                    }
+                    else if(opcion == 1)
+                    {
+                        Utils.BuscarMarca(sc, auto);
+                    }
+                    else if(opcion == 2)
+                    {
+                        Utils.BuscarAnho(sc,auto);
+                    }
+                    break;
+
+                case 3:
+                    Utils.calcularValorTotal(auto);
+                    break;
+            }
+        } while (opcion != 0);
+
+
     }
+
+    private static int Buscar_por(Scanner sc) {
+
+        System.out.println("¿Por que desea buscar? \n \n" +
+                "1. Por marca \n" +
+                "2. Por año \n" +
+                "0. Salir");
+
+        int opcion = sc.nextInt();
+
+        return opcion;
+    }
+
 }

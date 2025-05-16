@@ -5,12 +5,12 @@ public class Auto {
     private String marca;
     private String modelo;
     private int anho;
-    private double precio;
+    private Double precio;
 
     public Auto() {
     }
 
-    public Auto(String marca, String modelo, int anho, double precio) {
+    public Auto(String marca, String modelo, int anho, Double precio) {
         this.marca = marca;
         this.modelo = modelo;
         this.anho = anho;
@@ -41,11 +41,11 @@ public class Auto {
         this.anho = anho;
     }
 
-    public double getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 

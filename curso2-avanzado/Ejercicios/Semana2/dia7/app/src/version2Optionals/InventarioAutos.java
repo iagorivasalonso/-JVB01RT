@@ -1,4 +1,4 @@
-import entityes.Auto;
+package version2Optionals;
 
 import java.util.*;
 import java.util.function.Function;

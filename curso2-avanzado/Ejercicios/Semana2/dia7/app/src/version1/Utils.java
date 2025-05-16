@@ -1,24 +1,77 @@
 package version1;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import entityes.Auto;
 
-public  class InventarioAutos {
+import java.util.*;
 
-  public static <T> void agregar (List<T> inventario, T item){
-      inventario.add(item);
+public class Utils {
+    public static Auto crearAuto(Scanner sc) {
 
-  }
+        System.out.println("¿De que marca es el auto?");
+        String marca = sc.next();
+        System.out.println("¿De que modelo es el auto?");
+        String modelo = sc.next();
+        System.out.println("¿De que año es el auto?");
+        int anho = 0;
+        try {
+            anho = sc.nextInt();
+        }catch (InputMismatchException ex){
+            System.err.println("Error");
+        }
 
-  public static <T> List<T>buscarPor(List<T> inventario, Predicate<T>criterio){
-      return inventario.stream().filter(criterio).toList();
-  }
+        System.out.println("¿De que marca es el precio?");
+        double precio =0;
+        try {
+            precio = sc.nextDouble();
+        }catch (InputMismatchException ex){
+            System.err.println(ex);
+        }
+        Auto nuevo = new Auto(marca,modelo,anho,precio);
+        return nuevo;
+    }
+
+    public static void BuscarMarca(Scanner sc, ArrayList<Auto> auto) {
+
+        System.out.println("¿De que marca quiere buscar los autos?");
+        String marca_Buscar = sc.next();
+
+        List<Auto> marca = auto.stream().filter(at -> at.getMarca().equalsIgnoreCase(marca_Buscar)).toList();
+
+        if(marca.isEmpty())
+        {
+            System.out.println("No tiene autos de esta marca");
+        }
+        else
+        {
+            System.out.println(marca.toString());
+        }
 
 
-    public static<T> double sumaElementos(ArrayList<T> inventario, Function<T, Double> extractor) {
+    }
 
-      return inventario.stream().mapToDouble(extractor::apply).sum();
+    public static void BuscarAnho(Scanner sc, ArrayList<Auto> auto) {
+
+        System.out.println("¿De que año quiere buscar los autos?");
+        int anho_Buscar = sc.nextInt();
+
+        List <Auto> anhoMatriculacion = auto.stream().filter( at -> at.getAnho() == anho_Buscar).toList();
+
+        if(anhoMatriculacion.isEmpty())
+        {
+            System.out.println("Este año no se matricularon autos");
+        }
+        else
+        {
+            System.out.println(anhoMatriculacion.toString());
+        }
+
+
+    }
+
+    public static void calcularValorTotal(ArrayList<Auto> auto) {
+
+        double valorInventario = auto.stream().mapToDouble(Auto::getPrecio).sum();
+
+        System.out.println("el valor del inventario es:"+ valorInventario);
     }
 }
