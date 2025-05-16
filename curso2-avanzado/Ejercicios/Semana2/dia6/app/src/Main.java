@@ -44,7 +44,7 @@ public class Main {
        if(eventoProx.isPresent())
            System.out.println(eventoProx.get());
 
-       //eventos a partir de hoy
+       //eventos a partir de hoy !e.getFecha().isBefore(LocalDate.now())
 
     }
 }
