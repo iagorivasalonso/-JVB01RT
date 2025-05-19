@@ -7,18 +7,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        Directorio directorio = null;
+        Directorio directorioPrincipal = new Ejercicio1.Directorio(1, "documentos", Arrays.asList(
+                new Ejercicio1.Directorio(2, "Iago", new ArrayList<Directorio>(), Arrays.asList("foto.jpg", "fotoFamilia.png")),
+                new Ejercicio1.Directorio(3, "Curso", new ArrayList<Directorio>(), Arrays.asList("tema1.doc","tema2.doc,evaluacion.doc"))
+        ), new ArrayList<String>());
 
-        Directorio misArchivos = new Ejercicio1.Directorio(1, "documentos", Arrays.asList(
-                new Ejercicio1.Directorio(2, "Iago", new ArrayList<>(), Arrays.asList("foto.jpg", "fotoFamilia.png")),
-                new Ejercicio1.Directorio(3, "Curso", new ArrayList<>(), Arrays.asList("tema1.doc","tema2.doc,evaluacion.doc"))
-        ), new ArrayList<>());
-
-        directorio = misArchivos;                //vemos cuantos subdirectorios tenemos
-        int subdirectorios = directorio.getSubdirectorios().size();
-        int subdirectoriosVisto = 0;   //aqui ponemos los q estan vistos
-        List<String> nombreCarpetas = new ArrayList<>();
-        Utils.ListarCarpeta(directorio, subdirectorios,nombreCarpetas,subdirectoriosVisto);
+        ExplorarDirectorios.explorarDirectorio(directorioPrincipal,0);
 
     }
 }
