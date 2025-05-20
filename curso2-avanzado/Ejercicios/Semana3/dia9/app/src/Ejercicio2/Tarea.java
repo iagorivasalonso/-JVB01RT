@@ -10,9 +10,8 @@ public class Tarea {
     public Tarea() {
     }
 
-    public Tarea(String nombre, List<SubTarea> subtareas) {
+    public Tarea(String nombre ) {
         this.nombre = nombre;
-        Subtareas = subtareas;
     }
 
     public String getNombre() {

@@ -1,28 +1,24 @@
 package Ejercicio2;
 
+
 import java.util.List;
+import java.util.Scanner;
 
 public class Utils {
-    public static void ListarTareas(List<Tarea> listaTareas, int tActual, int tTareas) {
-
-        if (tActual==tTareas)
+    public static void añadirSubtareas(List<SubTarea> listSubTareas, String tarea, Scanner sc) {
+        while (true)
         {
-            System.out.println("fin");
-        }
-        else
-        {
+            System.out.println("¿Desea añadir una subtarea (s/n)?");
+            String response = sc.nextLine().trim().toLowerCase();
 
-            if(listaTareas.get(tActual).getSubtareas().get(0).getSubtareas()==null)
-            {
-                System.out.println(listaTareas.get(tActual).getNombre());
-            }
-            else
-            {
+            if(!response.equals("s"))break;
 
-            }
+            System.out.println("¿como se llama?");
 
-            tActual++;
-            ListarTareas(listaTareas,tActual,tTareas);
+            SubTarea subtarea1 = new SubTarea(sc.nextLine());
+            listSubTareas.add(subtarea1);
+            añadirSubtareas(listSubTareas,tarea,sc);
+
         }
 
     }
