@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) throws ParseException {
 
 
-        final LocalDate FECHA_INICIO = LocalDate.of(2022,3,2);
-        final LocalDate FECHA_FIN =  LocalDate.of(2025, 3, 1);
+        final LocalDate FECHADESDE =  null;
+        final LocalDate FECHAHASTA =  null;
 
 
         ArrayList <Vuelo> vuelos = new ArrayList<>();
@@ -25,7 +25,16 @@ public class Main {
         vuelos.add(new Vuelo(6, "malaga_dublin", "aerlingus", "Málaga", "Dublín", LocalDate.of(2025, 2, 28), LocalDate.of(2025, 3, 1)));
         vuelos.add(new Vuelo(7, "santiago_frankfurt", "lufthansa", "Santiago", "Fráncfort", LocalDate.of(2025, 1, 30), LocalDate.of(2025, 1, 31)));
         vuelos.add(new Vuelo(8, "zaragoza_milan", "vueling", "Zaragoza", "Milán", LocalDate.of(2025, 5, 1), LocalDate.of(2025, 5, 1)));
-        vuelos.add(new Vuelo(9, "murcia_oslo", "norwegian", "Murcia", "Oslo", LocalDate.of(2025, 5, 20), LocalDate.of(2025, 5, 22)));
+        vuelos.add(new Vuelo(9, "murcia_oslo", "norwegian", "Murcia", "Oslo", LocalDate.of(2025, 5, 24), LocalDate.of(2025, 5, 26)));
 
+
+         List<Vuelo> filtroVuelos;
+
+          filtroVuelos = vuelos.stream()
+                  .filter(v -> FECHADESDE == null || v.getFechaInicio().isAfter(FECHADESDE))
+                  .filter(v -> FECHAHASTA == null || v.getFechafin().isBefore(FECHAHASTA))
+                  .toList();
+
+        filtroVuelos.forEach(System.out::println);
     }
 }
