@@ -31,8 +31,8 @@ public class Main {
          List<Vuelo> filtroVuelos;
 
           filtroVuelos = vuelos.stream()
-                  .filter(v -> FECHADESDE == null || v.getFechaInicio().isAfter(FECHADESDE))
-                  .filter(v -> FECHAHASTA == null || v.getFechafin().isBefore(FECHAHASTA))
+                  .filter(v -> true)
+                  .filter(v -> true)
                   .toList();
 
         filtroVuelos.forEach(System.out::println);
