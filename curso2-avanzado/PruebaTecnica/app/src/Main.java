@@ -2,14 +2,14 @@ import entities.Vuelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import utils.operacionesFiltro;
+import utils.OperacionesFiltro;
 
 public class Main {
     public static void main(String[] args) {
 
 
-        final LocalDate FECHADESDE =  LocalDate.of(2025,4,1);
-        final LocalDate FECHAHASTA =  LocalDate.of(2025,5,1);;
+        final LocalDate FECHADESDE = null;
+        final LocalDate FECHAHASTA =  null;
 
 
         ArrayList <Vuelo> vuelos = new ArrayList<>();
@@ -24,11 +24,16 @@ public class Main {
         vuelos.add(new Vuelo(9, "zaragoza_milan", "vueling", "Zaragoza", "Milán", LocalDate.of(2025, 5, 1), LocalDate.of(2025, 5, 1)));
         vuelos.add(new Vuelo(10, "valencia_berlin", "lufthansa", "Valencia", "Berlín", LocalDate.of(2025, 4, 20), LocalDate.of(2025, 4, 21)));
 
-        List<Vuelo> filtroVuelos= List.of();
+        List<Vuelo> filtroVuelos = List.of();                    //funcion de filtro de vuelos
+        filtroVuelos = OperacionesFiltro.filtro(vuelos,filtroVuelos, FECHADESDE,FECHAHASTA);
 
 
-        filtroVuelos = operacionesFiltro.filtro(vuelos,filtroVuelos, FECHADESDE,FECHAHASTA);
-        System.out.println(filtroVuelos);
+        //a traves de esta funcion ordenamos los vuelos por fecha de salida en este caso
+        List<Vuelo> vuelosOrdenadosPorFechaSalida = OperacionesFiltro.ordenar(filtroVuelos);
+
+        //imprimimos el resultado ordenado
+        vuelosOrdenadosPorFechaSalida.stream().forEach(System.out::println);
+
 
     }
 }
