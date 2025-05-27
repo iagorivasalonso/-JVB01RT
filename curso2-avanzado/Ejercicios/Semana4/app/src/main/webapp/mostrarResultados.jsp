@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.List, entities.Partido" %>
+<%@ page import="java.util.Map" %>
 
 <!DOCTYPE html>
 
@@ -20,13 +20,22 @@
                      </thead>
 
                      <tBody>
-                         <% List<Partido> partidos = (List<Partido>) request.getAttribute("listado");
-                           for(Partido partido: partidos) { %>
+                             <%
+                              Map<String, Long> listado = (Map<String, Long>) request.getAttribute("listado");
+                              for(Map.Entry<String, Long> entry: listado.entrySet()){
+                                  String key = entry.getKey();
+                                  Long value = entry.getValue();
+                              %>
+
+
+
                                <tr>
-                                   <td><%= partido.getNombre()%></td>
-                                   <td><%= partido.getVotos()%></td>
+                                   <td>Partido <%=key%></td>
+                                   <td><%=value%></td>
                               </tr>
+
                          <% } %>
+
                     </tBody>
            </table>
       </main>
