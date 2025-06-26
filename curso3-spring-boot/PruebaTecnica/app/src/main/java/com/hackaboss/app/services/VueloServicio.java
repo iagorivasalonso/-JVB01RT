@@ -47,12 +47,22 @@ public class VueloServicio implements IVueloServicio {
     }
 
     @Override
-    public VueloDTO mapeoToDTO(Vuelo v) {
-        return null;
+    public VueloDTO mapeoVueloToDTO(Vuelo v) {
+        return new VueloDTO(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada());
     }
 
     @Override
-    public Vuelo mapeoToObJ(VueloDTO v) {
-        return null;
+    public Vuelo mapeoVueloToObJ(VueloDTO v) {
+        return new Vuelo(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada());
+    }
+
+    @Override
+    public List<VueloDTO> mapeoListaVuelosDTO(List<VueloDTO> listaVuelos) {
+        List<VueloDTO> listaDTO = new ArrayList<>();
+        for(VueloDTO v : listaVuelos)
+        {
+            listaDTO.add(v);
+        }
+        return listaDTO;
     }
 }

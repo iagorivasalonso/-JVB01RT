@@ -13,8 +13,11 @@ public interface IVueloServicio {
     VueloDTO insertarVuelos(VueloDTO v);
     ResponseEntity<?> actualizarVuelo(int id);
     ResponseEntity<?> eliminarVuelo(int id);
-    VueloDTO mapeoToDTO(Vuelo v);
-    Vuelo mapeoToObJ(VueloDTO v);
+    VueloDTO mapeoVueloToDTO(Vuelo v);
+    Vuelo mapeoVueloToObJ(VueloDTO v);
+
+    List<VueloDTO>mapeoListaVuelosDTO(List<VueloDTO>listaVuelos);
+
 
 
 
