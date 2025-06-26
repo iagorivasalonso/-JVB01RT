@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IEstudianteCalificacionServicio {
 
-    List<Estudiante> listar();
+    List<EstudianteDTO> listar();
     double mediaEstudiante(int nMatricula);
     List<CalificacionesDTO> notasEstudiantes();
 
@@ -18,7 +18,7 @@ public interface IEstudianteCalificacionServicio {
 
     CalificacionesDTO mapeoCalificacionesOBJ(CalificacionesDTO cDTO);
 
-    EstudianteDTO mapeoCalificacionesDTO(EstudianteDTO e);
+    EstudianteDTO mapeoEstudiantesDTO(Estudiante e);
 
     EstudianteDTO mapeoCalificacionesOBJ(EstudianteDTO eDTO);
 }

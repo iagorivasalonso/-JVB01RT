@@ -1,6 +1,7 @@
 package com.hackaboss.app.controllers;
 
 import com.hackaboss.app.dtos.CalificacionesDTO;
+import com.hackaboss.app.dtos.EstudianteDTO;
 import com.hackaboss.app.models.Estudiante;
 import com.hackaboss.app.services.EstudianteCalificacionServicio;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ public class InstitutoController {
 
     //http://localhost:8080/estudiantes
     @GetMapping("/estudiantes")
-    public List<Estudiante> obtenerTodos() {
+    public List<EstudianteDTO> obtenerTodos() {
         return institutoServicio.listar();
     }
 
