@@ -12,7 +12,7 @@ import java.util.*;
 public class EstudianteCalificacionServicio  implements IEstudianteCalificacionServicio {
 
     private List<EstudianteDTO> estudiantesDTO = new ArrayList<>();
-    private List<CalificacionesDTO> calificaciones = new ArrayList<>();
+    private List<CalificacionesDTO> calificacionesDTO = new ArrayList<>();
 
 
 
@@ -28,10 +28,10 @@ public class EstudianteCalificacionServicio  implements IEstudianteCalificacionS
         Estudiante e4 = new Estudiante(1004, "Lucía", "Fernández", new Date(104, 8, 5));   // 2004-09-05
         estudiantesDTO.add(mapeoEstudiantesDTO(e4));
 
-        calificaciones.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(2.9,8.6),0.0,e1)));
-        calificaciones.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(9.0, 7.5, 8.0), 0.0, e2)));
-        calificaciones.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(6.5, 6.0), 0.0, e3)));
-        calificaciones.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(9.0, 9.8, 9.9, 10.0), 0.0, e4)));
+        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(2.9,8.6),0.0,e1)));
+        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(9.0, 7.5, 8.0), 0.0, e2)));
+        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(6.5, 6.0), 0.0, e3)));
+        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(9.0, 9.8, 9.9, 10.0), 0.0, e4)));
     }
 
 
@@ -46,7 +46,7 @@ public class EstudianteCalificacionServicio  implements IEstudianteCalificacionS
 
         Optional<EstudianteDTO> estudiante = this.estudiantesDTO.stream().filter(e -> e.getNumero_matricula()==nMatricula).findFirst();
         
-        return calificaciones.stream()
+        return calificacionesDTO.stream()
                 .filter(c -> c.getEstudiante().equals(estudiante.get()))
                 .flatMap(c -> c.getCalificaciones().stream())
                 .mapToDouble(Double::doubleValue)
@@ -57,7 +57,7 @@ public class EstudianteCalificacionServicio  implements IEstudianteCalificacionS
     @Override
     public List<CalificacionesDTO> notasEstudiantes() {
 
-        return this.calificaciones.stream()
+        return this.calificacionesDTO.stream()
                 .map(c -> new CalificacionesDTO(
                         c.getCalificaciones(),
                         c.getPromedio(),
