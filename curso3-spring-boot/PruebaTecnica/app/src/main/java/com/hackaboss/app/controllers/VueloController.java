@@ -26,7 +26,7 @@ public class VueloController {
     }
 
     @PostMapping("/vuelos")
-    public List<VueloDTO> insertarVuelos(@PathVariable int id,@RequestBody VueloDTO nuevoVuelo) {
+    public List<VueloDTO> insertarVuelos(@RequestBody VueloDTO nuevoVuelo) {
           return this.vueloServicioInterfaz.insertarVuelos(nuevoVuelo);
     }
 

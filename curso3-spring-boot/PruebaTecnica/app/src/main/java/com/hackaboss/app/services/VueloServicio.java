@@ -39,7 +39,7 @@ public class VueloServicio implements IVueloServicio {
 
     @Override
     public List<VueloDTO> insertarVuelos(VueloDTO v) {                            //insertarVuelos
-        v.setId(this.vuelos.size() + 1);
+        v.setId(vuelos.size() + 1);
 
         Vuelo vObj = this.mapeoVueloToObJ(v); //mapea a obj
         this.vuelos.add(vObj);
