@@ -13,7 +13,7 @@ public class VueloServicio implements IVueloServicio {
     private List<Vuelo> vuelos;
 
     public VueloServicio (){
-        this.vuelos = new ArrayList<>();
+        this.vuelos = new ArrayList<>();                      //carga de datos
         vuelos.add(new Vuelo(1, "H001-V", "Iberia", "Madrid", "Buenos Aires", LocalDate.of(2025, 3, 10), LocalDate.of(2025, 3, 11)));
         vuelos.add(new Vuelo(2, "H002-V", "Air France", "París", "Ciudad de México", LocalDate.of(2025, 4, 5), LocalDate.of(2025, 4, 6)));
         vuelos.add(new Vuelo(3, "H003-V", "Lufthansa", "Berlín", "Nueva York", LocalDate.of(2025, 5, 12), LocalDate.of(2025, 5, 12)));
