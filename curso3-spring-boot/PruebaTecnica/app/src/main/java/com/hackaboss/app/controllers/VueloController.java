@@ -1,5 +1,4 @@
 package com.hackaboss.app.controllers;
-
 import com.hackaboss.app.dtos.VueloDTO;
 import com.hackaboss.app.services.IVueloServicio;
 import org.springframework.http.ResponseEntity;
@@ -27,13 +26,13 @@ public class VueloController {
     }
 
     @PostMapping("/vuelos")
-    public VueloDTO insertarVuelos(@RequestBody VueloDTO nuevoVuelo) {
+    public List<VueloDTO> insertarVuelos(@PathVariable int id,@RequestBody VueloDTO nuevoVuelo) {
           return this.vueloServicioInterfaz.insertarVuelos(nuevoVuelo);
     }
 
     @PutMapping ("/vuelos/{id}")
-    public ResponseEntity<?> actualizarVuelo(@PathVariable int id) {
-        return this.vueloServicioInterfaz.actualizarVuelo(id);
+    public ResponseEntity<VueloDTO> actualizarVuelo(@PathVariable int id,@RequestBody VueloDTO vueloActualizado) {
+        return this.vueloServicioInterfaz.actualizarVuelo(id,vueloActualizado);
     }
 
     @DeleteMapping ("/vuelos/{id}")
