@@ -2,12 +2,16 @@ package com.hackaboss.app.services;
 
 import com.hackaboss.app.dtos.VueloDTO;
 import com.hackaboss.app.models.Vuelo;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class VueloServicio implements IVueloServicio {
 
     private List<Vuelo> vuelos;
@@ -23,27 +27,64 @@ public class VueloServicio implements IVueloServicio {
 
     @Override
     public List<VueloDTO> todosLosVuelos() {
-        return List.of();
+        return this.vuelos.stream()                                         //Lista todos los vuelos
+                .map(this::mapeoVueloToDTO).toList();
     }
 
     @Override
-    public VueloDTO busquedaVuelo(int id) {
-        return null;
+    public VueloDTO busquedaVuelo(int id) {                                 //Busqueda de vuelo por Id
+        Optional<Vuelo> vueloBuscado = this.vuelos.stream().filter(v -> v.getId() ==id).findFirst();
+        return vueloBuscado.map(this::mapeoVueloToDTO).orElse(null);            //realiza el mapeo
     }
 
     @Override
-    public VueloDTO insertarVuelos(VueloDTO v) {
-        return null;
+    public List<VueloDTO> insertarVuelos(VueloDTO v) {                            //insertarVuelos
+        v.setId(this.vuelos.size() + 1);
+
+        Vuelo vObj = this.mapeoVueloToObJ(v); //mapea a obj
+        this.vuelos.add(vObj);
+        return this.todosLosVuelos();
+    }
+
+
+    @Override                                                                             //actualizarVuelo
+    public ResponseEntity<VueloDTO> actualizarVuelo(int id, VueloDTO vueloActualizado) {
+
+        Vuelo vueloObj= mapeoVueloToObJ(vueloActualizado);                                 //paso a Obj
+        vueloObj.setId(id);
+
+        Boolean actualizado = false;
+
+        for (int i = 0; i < vuelos.size(); i++) {
+            if (vuelos.get(i).getId() == id) {
+                vuelos.set(i, vueloObj);
+                actualizado = true;
+                break;
+            }
+        }
+
+        if (actualizado) {
+            return ResponseEntity.ok(mapeoVueloToDTO(vueloObj));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @Override
-    public ResponseEntity<?> actualizarVuelo(int id) {
-        return null;
-    }
+    public ResponseEntity<?> eliminarVuelo(int id) {                                             //elimina el vuelo
+        boolean eliminado = this.vuelos.removeIf(v -> v.getId() == id);
 
-    @Override
-    public ResponseEntity<?> eliminarVuelo(int id) {
-        return null;
+        if (eliminado)
+        {
+            return ResponseEntity.status(HttpStatus.ACCEPTED)
+                    .body(null);
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+
     }
 
     ///Todo:  =====metodos mapeo DTO====
@@ -57,13 +98,4 @@ public class VueloServicio implements IVueloServicio {
         return new Vuelo(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada());
     }
 
-    @Override
-    public List<VueloDTO> mapeoListaVuelosDTO(List<VueloDTO> listaVuelos) {
-        List<VueloDTO> listaDTO = new ArrayList<>();
-        for(VueloDTO v : listaVuelos)
-        {
-            listaDTO.add(v);
-        }
-        return listaDTO;
-    }
 }

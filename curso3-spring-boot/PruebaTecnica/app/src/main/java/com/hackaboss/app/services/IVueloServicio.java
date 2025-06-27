@@ -10,15 +10,10 @@ public interface IVueloServicio {
 
     List<VueloDTO> todosLosVuelos();
     VueloDTO busquedaVuelo(int id);
-    VueloDTO insertarVuelos(VueloDTO v);
-    ResponseEntity<?> actualizarVuelo(int id);
+    List<VueloDTO> insertarVuelos(VueloDTO v);;
     ResponseEntity<?> eliminarVuelo(int id);
     VueloDTO mapeoVueloToDTO(Vuelo v);
     Vuelo mapeoVueloToObJ(VueloDTO v);
 
-    List<VueloDTO>mapeoListaVuelosDTO(List<VueloDTO>listaVuelos);
-
-
-
-
+    ResponseEntity<VueloDTO> actualizarVuelo(int id, VueloDTO vueloActualizado);
 }
