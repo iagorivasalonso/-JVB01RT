@@ -20,5 +20,4 @@ public interface IEstudianteCalificacionServicio {
 
     EstudianteDTO mapeoEstudiantesDTO(Estudiante e);
 
-    EstudianteDTO mapeoCalificacionesOBJ(EstudianteDTO eDTO);
 }

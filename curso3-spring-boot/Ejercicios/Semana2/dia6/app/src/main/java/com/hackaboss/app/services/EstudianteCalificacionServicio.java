@@ -88,12 +88,4 @@ public class EstudianteCalificacionServicio  implements IEstudianteCalificacionS
         return new EstudianteDTO(eDTO.getNumero_matricula(),eDTO.getNombre(),eDTO.getApellido(),eDTO.getFechaNacimiento());
     }
 
-    public List<EstudianteDTO> mapeoListaEstudiantesDTO(List<EstudianteDTO> listaEstudiantes) {
-        List<EstudianteDTO> listaDTO = new ArrayList<>();
-        for (EstudianteDTO e : listaEstudiantes) {
-            listaDTO.add(e);
-        }
-        return listaDTO;
-    }
-
 }
