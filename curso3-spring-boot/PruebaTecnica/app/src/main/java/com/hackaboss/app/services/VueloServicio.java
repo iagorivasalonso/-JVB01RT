@@ -52,6 +52,7 @@ public class VueloServicio implements IVueloServicio {
         return null;
     }
 
+    ///Todo:  =====metodos mapeo DTO====
     @Override
     public VueloDTO mapeoVueloToDTO(Vuelo v) {
         return new VueloDTO(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada());
