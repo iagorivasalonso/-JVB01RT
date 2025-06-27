@@ -11,8 +11,8 @@ import java.util.*;
 @Service
 public class EstudianteCalificacionServicio  implements IEstudianteCalificacionServicio {
 
-    private List<EstudianteDTO> estudiantesDTO = new ArrayList<>();
-    private List<CalificacionesDTO> calificacionesDTO = new ArrayList<>();
+    private List<Estudiante> estudiantes = new ArrayList<>();
+    private List<Calificaciones> calificacionesDTO = new ArrayList<>();
 
 
 
@@ -20,31 +20,32 @@ public class EstudianteCalificacionServicio  implements IEstudianteCalificacionS
 
 
         Estudiante e1 = new Estudiante(1001, "Luis", "González", new Date(102, 2, 15));    // 2002-03-15
-        estudiantesDTO.add(mapeoEstudiantesDTO(e1));
+        estudiantes.add(e1);
         Estudiante e2 = new Estudiante(1002, "Ana", "Martínez", new Date(103, 6, 9));      // 2003-07-09
-        estudiantesDTO.add(mapeoEstudiantesDTO(e2));
+        estudiantes.add(e2);
         Estudiante e3 = new Estudiante(1003, "Carlos", "Ramírez", new Date(101, 0, 25));   // 2001-01-25
-        estudiantesDTO.add(mapeoEstudiantesDTO(e3));
+        estudiantes.add(e3);
         Estudiante e4 = new Estudiante(1004, "Lucía", "Fernández", new Date(104, 8, 5));   // 2004-09-05
-        estudiantesDTO.add(mapeoEstudiantesDTO(e4));
+        estudiantes.add(e4);
 
-        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(2.9,8.6),0.0,e1)));
-        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(9.0, 7.5, 8.0), 0.0, e2)));
-        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(6.5, 6.0), 0.0, e3)));
-        calificacionesDTO.add(mapeoCalificacionesDTO(new Calificaciones(Arrays.asList(9.0, 9.8, 9.9, 10.0), 0.0, e4)));
+        calificacionesDTO.add(new Calificaciones(Arrays.asList(2.9,8.6),0.0,e1));
+        calificacionesDTO.add(new Calificaciones(Arrays.asList(9.0, 7.5, 8.0), 0.0, e2));
+        calificacionesDTO.add(new Calificaciones(Arrays.asList(6.5, 6.0), 0.0, e3));
+        calificacionesDTO.add(new Calificaciones(Arrays.asList(9.0, 9.8, 9.9, 10.0), 0.0, e4));
     }
 
 
     @Override
     public List<EstudianteDTO> listar() {
 
-        return  this.mapeoListaEstudiantesDTO(this.estudiantesDTO);
+        return this.estudiantes.stream().map(this::mapeoEstudiantesDTO).toList();
+
     }
 
     @Override
     public double mediaEstudiante(int nMatricula) {
 
-        Optional<EstudianteDTO> estudiante = this.estudiantesDTO.stream().filter(e -> e.getNumero_matricula()==nMatricula).findFirst();
+        Optional<Estudiante> estudiante = this.estudiantes.stream().filter(e -> e.getNumero_matricula()==nMatricula).findFirst();
         
         return calificacionesDTO.stream()
                 .filter(c -> c.getEstudiante().equals(estudiante.get()))
