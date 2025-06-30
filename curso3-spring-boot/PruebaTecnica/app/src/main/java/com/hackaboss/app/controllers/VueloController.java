@@ -1,5 +1,6 @@
 package com.hackaboss.app.controllers;
 import com.hackaboss.app.dtos.VueloDTO;
+import com.hackaboss.app.response.VueloRespuesta;
 import com.hackaboss.app.services.IVueloServicio;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class VueloController {
     }
 
     @GetMapping("/vuelos")
-    public List<VueloDTO> todosLosVuelos( @RequestParam(required = false) String empresa,
+    public ResponseEntity<?> todosLosVuelos( @RequestParam(required = false) String empresa,
                                           @RequestParam(required = false) String lugarLLegada,
                                           @RequestParam(required = false) String fechaLLegada) {
 
@@ -24,17 +25,17 @@ public class VueloController {
     }
 
     @GetMapping("/vuelos/{id}")
-    public VueloDTO busquedaVuelo(@PathVariable int id){
+    public ResponseEntity<?> busquedaVuelo(@PathVariable int id){
                 return this.vueloServicioInterfaz.busquedaVuelo(id);
     }
 
     @PostMapping("/vuelos")
-    public List<VueloDTO> insertarVuelos(@RequestBody VueloDTO nuevoVuelo) {
+    public ResponseEntity<?> insertarVuelos(@RequestBody VueloDTO nuevoVuelo) {
           return this.vueloServicioInterfaz.insertarVuelos(nuevoVuelo);
     }
 
     @PutMapping ("/vuelos/{id}")
-    public ResponseEntity<VueloDTO> actualizarVuelo(@PathVariable int id,@RequestBody VueloDTO vueloActualizado) {
+    public ResponseEntity<VueloRespuesta> actualizarVuelo(@PathVariable int id, @RequestBody VueloDTO vueloActualizado) {
         return this.vueloServicioInterfaz.actualizarVuelo(id,vueloActualizado);
     }
 
