@@ -16,8 +16,11 @@ public class VueloController {
     }
 
     @GetMapping("/vuelos")
-    public List<VueloDTO> todosLosVuelos() {
-        return this.vueloServicioInterfaz.todosLosVuelos();
+    public List<VueloDTO> todosLosVuelos( @RequestParam(required = false) String empresa,
+                                          @RequestParam(required = false) String lugarLLegada,
+                                          @RequestParam(required = false) String fechaLLegada) {
+
+        return this.vueloServicioInterfaz.todosLosVuelos(empresa,lugarLLegada,fechaLLegada);
     }
 
     @GetMapping("/vuelos/{id}")

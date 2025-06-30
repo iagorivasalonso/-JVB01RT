@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +27,11 @@ public class VueloServicio implements IVueloServicio {
     }
 
     @Override
-    public List<VueloDTO> todosLosVuelos() {
-        return this.vuelos.stream()                                         //Lista todos los vuelos
+    public List<VueloDTO> todosLosVuelos(String empresa,String lugarLLegada,String fechaLLegada) {
+        return this.vuelos.stream()                                         //Lista y filtrado de todos los vuelos
+                .filter(Vuelo -> empresa == null || Vuelo.getEmpresa().equalsIgnoreCase(empresa))
+                .filter(Vuelo -> lugarLLegada == null || Vuelo.getLugarLlegada().equalsIgnoreCase(lugarLLegada))
+                .sorted(Comparator.comparing(Vuelo::getNombreVuelo))
                 .map(this::mapeoVueloToDTO).toList();
     }
 
@@ -43,7 +47,7 @@ public class VueloServicio implements IVueloServicio {
 
         Vuelo vObj = this.mapeoVueloToObJ(v); //mapea a obj
         this.vuelos.add(vObj);
-        return this.todosLosVuelos();
+        return this.todosLosVuelos(null,null,null);
     }
 
 
