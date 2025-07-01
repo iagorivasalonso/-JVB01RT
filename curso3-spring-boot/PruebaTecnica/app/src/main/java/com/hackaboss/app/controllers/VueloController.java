@@ -2,6 +2,7 @@ package com.hackaboss.app.controllers;
 import com.hackaboss.app.dtos.VueloDTO;
 import com.hackaboss.app.response.VueloRespuesta;
 import com.hackaboss.app.services.IVueloServicio;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,12 +31,12 @@ public class VueloController {
     }
 
     @PostMapping("/vuelos")
-    public ResponseEntity<?> insertarVuelos(@RequestBody VueloDTO nuevoVuelo) {
+    public ResponseEntity<?> insertarVuelos(@RequestBody @Valid VueloDTO nuevoVuelo) {
           return this.vueloServicioInterfaz.insertarVuelos(nuevoVuelo);
     }
 
     @PutMapping ("/vuelos/{id}")
-    public ResponseEntity<VueloRespuesta> actualizarVuelo(@PathVariable int id, @RequestBody VueloDTO vueloActualizado) {
+    public ResponseEntity<VueloRespuesta> actualizarVuelo(@PathVariable int id, @RequestBody @Valid VueloDTO vueloActualizado) {
         return this.vueloServicioInterfaz.actualizarVuelo(id,vueloActualizado);
     }
 
