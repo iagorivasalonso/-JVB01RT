@@ -101,7 +101,7 @@ public class VueloServicio implements IVueloServicio {
     @Override                                                                             //actualizarVuelo
     public ResponseEntity<VueloRespuesta> actualizarVuelo(int id, VueloDTO vueloActualizado) {
 
-        Vuelo vueloObj= mapeoVueloToObJ(vueloActualizado);                                 //paso a Obj
+        Vuelo vueloObj = mapeoVueloToObJ(vueloActualizado);                                 //paso a Obj
         vueloObj.setId(id);
 
         Boolean actualizado = false;
