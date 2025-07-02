@@ -18,7 +18,7 @@ public class VueloController {
     }
 
     @GetMapping("/vuelos")
-    public ResponseEntity<?> todosLosVuelos( @RequestParam(required = false) String empresa,
+    public ResponseEntity<?> todosLosVuelos(@RequestParam(required = false) String empresa,
                                           @RequestParam(required = false) String lugarLLegada,
                                           @RequestParam(required = false) String fechaLLegada) {
 
