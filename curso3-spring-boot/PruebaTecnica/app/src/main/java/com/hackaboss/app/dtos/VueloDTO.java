@@ -38,4 +38,6 @@ public class VueloDTO {
     @NotNull(message = "La fecha de salida no puede ser null")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaLlegada;
+    @JsonProperty("publicDuracionViaje")
+    private String duracionViaje;
 }

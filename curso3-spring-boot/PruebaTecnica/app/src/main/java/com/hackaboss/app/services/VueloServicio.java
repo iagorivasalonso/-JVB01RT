@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -181,7 +182,30 @@ public class VueloServicio implements IVueloServicio {
     ///Todo:  =====metodos mapeo DTO====
     @Override
     public VueloDTO mapeoVueloToDTO(Vuelo v) {
-        return new VueloDTO(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada());
+
+        LocalDate fechaSalida = v.getFechaSalida();  //se cojen las fechas y se restan para asi tener la mustra en el json de duracion de viaje
+        LocalDate fechaLlegada = v.getFechaLlegada();
+
+        Period periodo = Period.between(fechaSalida,fechaLlegada);
+
+        StringBuilder strTiempo = new StringBuilder();
+
+        if(periodo.getYears()!=0)
+        {
+            strTiempo.append("Años: " + periodo.getYears());
+        }
+
+        if(periodo.getMonths()!=0)
+        {
+            strTiempo.append(" Meses: " + periodo.getMonths());
+        }
+        if (periodo.getDays()!=0)
+        {
+            strTiempo.append(" Días: " + periodo.getDays());
+        }
+
+        String tiempoViaje = strTiempo.toString();
+        return new VueloDTO(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada(),tiempoViaje);
     }
 
     @Override
