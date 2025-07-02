@@ -3,6 +3,7 @@ package com.hackaboss.app.services;
 import com.hackaboss.app.dtos.VueloDTO;
 import com.hackaboss.app.models.Vuelo;
 import com.hackaboss.app.response.VueloRespuesta;
+import com.hackaboss.app.utils.Fechas;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import java.util.Optional;
 
 @Service
 public class VueloServicio implements IVueloServicio {
+
+    Fechas fechas = new Fechas();
 
     private List<Vuelo> vuelos;
 
@@ -89,11 +92,30 @@ public class VueloServicio implements IVueloServicio {
     }
 
     @Override
-    public ResponseEntity<?> insertarVuelos(VueloDTO v) {                            //insertarVuelos
+    public ResponseEntity<?> insertarVuelos(VueloDTO v) {
+
+        boolean correcto = fechas.comprobarFechas(v.getFechaSalida(),v.getFechaLlegada());// comprobar fechas e insertarVuelos
+
+        if(correcto)
+        {
+            Vuelo vObj = this.mapeoVueloToObJ(v); //mapea a obj
+            this.vuelos.add(vObj);
+
+            VueloRespuesta vueloRespuesta = new VueloRespuesta(
+                    "El vuelo se inserto correctamente",
+                    HttpStatus.OK.value(),
+                    LocalDate.now()
+            );
+        }
+        else
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new VueloRespuesta("La fecha de salida no puede ser antes de la de llegada ",HttpStatus.NO_CONTENT.value(), LocalDate.now()));
+        }
         v.setId(vuelos.size() + 1);
 
-        Vuelo vObj = this.mapeoVueloToObJ(v); //mapea a obj
-        this.vuelos.add(vObj);
+
+
         return this.todosLosVuelos(null,null,null);
     }
 
@@ -101,31 +123,41 @@ public class VueloServicio implements IVueloServicio {
     @Override                                                                             //actualizarVuelo
     public ResponseEntity<VueloRespuesta> actualizarVuelo(int id, VueloDTO vueloActualizado) {
 
-        Vuelo vueloObj = mapeoVueloToObJ(vueloActualizado);                                 //paso a Obj
-        vueloObj.setId(id);
+        boolean correcto = fechas.comprobarFechas(vueloActualizado.getFechaSalida(),vueloActualizado.getFechaLlegada());  //comprobar fechas
 
-        Boolean actualizado = false;
+        if(correcto)
+        {
+            Vuelo vueloObj = mapeoVueloToObJ(vueloActualizado);                                 //paso a Obj
+            vueloObj.setId(id);
 
-        for (int i = 0; i < vuelos.size(); i++) {
-            if (vuelos.get(i).getId() == id) {
-                vuelos.set(i, vueloObj);
-                actualizado = true;
-                break;
+            Boolean actualizado = false;
+
+            for (int i = 0; i < vuelos.size(); i++) {
+                if (vuelos.get(i).getId() == id) {
+                    vuelos.set(i, vueloObj);
+                    actualizado = true;
+                    break;
+                }
+            }
+
+            if (actualizado) {
+
+                VueloRespuesta vueloRespuesta = new VueloRespuesta(
+                        "El vuelo se actualizo correctamente",
+                        HttpStatus.OK.value(),
+                        LocalDate.now()
+                );
+
+                return ResponseEntity.ok(vueloRespuesta);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(new VueloRespuesta("no se encontro el id " + id,HttpStatus.NO_CONTENT.value(), LocalDate.now()));
             }
         }
-
-        if (actualizado) {
-
-             VueloRespuesta vueloRespuesta = new VueloRespuesta(
-                     "El vuelo se actualizo correctamente",
-                     HttpStatus.OK.value(),
-                     LocalDate.now()
-               );
-
-            return ResponseEntity.ok(vueloRespuesta);
-        } else {
+        else
+        {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new VueloRespuesta("no se encontro el id " + id,HttpStatus.NO_CONTENT.value(), LocalDate.now()));
+                    .body(new VueloRespuesta("La fecha de salida no puede ser antes de la de llegada",HttpStatus.NO_CONTENT.value(), LocalDate.now()));
         }
     }
 
