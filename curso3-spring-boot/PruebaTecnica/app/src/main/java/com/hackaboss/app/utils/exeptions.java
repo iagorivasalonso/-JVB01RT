@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 
 @ControllerAdvice
-public class fechaValid {
+public class exeptions {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity  manejarErroresValidacion (HttpMessageNotReadableException ex){
