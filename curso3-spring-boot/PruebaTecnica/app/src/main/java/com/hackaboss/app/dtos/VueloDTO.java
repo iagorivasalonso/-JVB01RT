@@ -19,18 +19,23 @@ public class VueloDTO {
     @JsonProperty("publicId")
     private int id;
     @JsonProperty("publicNombreVuelo")
+    @NotNull(message = "El nombre del vuelo no puede ser null")
     private String nombreVuelo;
     @JsonProperty("publicEmpresa")
+    @NotNull(message = "El nombre de la empresa no puede ser null")
     private String empresa;
     @JsonProperty("publicLugarSalida")
+    @NotNull(message = "El lugar de salida no puede ser null")
     private String lugarSalida;
     @JsonProperty("publicLugarLlegada")
+    @NotNull(message = "El lugar de llegada no puede ser null")
     private String lugarLlegada;
     @JsonProperty("publicFechaSalida")
-    @NotNull(message = "La fecha de salida es obligatoria")
+    @NotNull(message = "La fecha de salida no puede ser null")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaSalida;
     @JsonProperty("publicFechaLlegada")
+    @NotNull(message = "La fecha de salida no puede ser null")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaLlegada;
 }
