@@ -11,8 +11,9 @@ public interface IVueloServicio {
     ResponseEntity<?>busquedaVuelo(int id);
     ResponseEntity<?> insertarVuelos(VueloDTO v);;
     ResponseEntity<?> eliminarVuelo(int id);
-    VueloDTO mapeoVueloToDTO(Vuelo v);
-    Vuelo mapeoVueloToObJ(VueloDTO v);
 
     ResponseEntity<VueloRespuesta> actualizarVuelo(int id, VueloDTO vueloActualizado);
+
+    VueloDTO mapeoVueloToDTO(Vuelo v);
+    Vuelo mapeoVueloToObJ(VueloDTO v);
 }

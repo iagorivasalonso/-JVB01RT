@@ -72,7 +72,6 @@ public class VueloServicio implements IVueloServicio {
     @Override
     public ResponseEntity<?> busquedaVuelo(int id) {                                 //Busqueda de vuelo por Id
         Optional<Vuelo> vueloBuscado = this.vuelos.stream().filter(v -> v.getId() ==id).findFirst();
-
         if(vueloBuscado.isPresent())
         {
             VueloDTO vDto = mapeoVueloToDTO(vueloBuscado.get());
@@ -94,9 +93,7 @@ public class VueloServicio implements IVueloServicio {
 
     @Override
     public ResponseEntity<?> insertarVuelos(VueloDTO v) {
-
         boolean correcto = fechas.comprobarFechas(v.getFechaSalida(),v.getFechaLlegada());// comprobar fechas e insertarVuelos
-
         if(correcto)
         {
             Vuelo vObj = this.mapeoVueloToObJ(v); //mapea a obj
@@ -114,9 +111,6 @@ public class VueloServicio implements IVueloServicio {
                     .body(new VueloRespuesta("La fecha de salida no puede ser antes de la de llegada ",HttpStatus.NO_CONTENT.value(), LocalDate.now()));
         }
         v.setId(vuelos.size() + 1);
-
-
-
         return this.todosLosVuelos(null,null,null);
     }
 
@@ -125,7 +119,6 @@ public class VueloServicio implements IVueloServicio {
     public ResponseEntity<VueloRespuesta> actualizarVuelo(int id, VueloDTO vueloActualizado) {
 
         boolean correcto = fechas.comprobarFechas(vueloActualizado.getFechaSalida(),vueloActualizado.getFechaLlegada());  //comprobar fechas
-
         if(correcto)
         {
             Vuelo vueloObj = mapeoVueloToObJ(vueloActualizado);                                 //paso a Obj
@@ -165,7 +158,6 @@ public class VueloServicio implements IVueloServicio {
     @Override
     public ResponseEntity<?> eliminarVuelo(int id) {                                             //elimina el vuelo
         boolean eliminado = this.vuelos.removeIf(v -> v.getId() == id);
-
         if (eliminado)
         {
             return ResponseEntity.status(HttpStatus.ACCEPTED)
@@ -176,25 +168,20 @@ public class VueloServicio implements IVueloServicio {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(new VueloRespuesta("No se pudo eliminar el id " + id,HttpStatus.NO_CONTENT.value(), LocalDate.now()));
         }
-
     }
 
     ///Todo:  =====metodos mapeo DTO====
     @Override
     public VueloDTO mapeoVueloToDTO(Vuelo v) {
-
         LocalDate fechaSalida = v.getFechaSalida();  //se cojen las fechas y se restan para asi tener la mustra en el json de duracion de viaje
         LocalDate fechaLlegada = v.getFechaLlegada();
-
         Period periodo = Period.between(fechaSalida,fechaLlegada);
-
-        StringBuilder strTiempo = new StringBuilder();
+        StringBuilder strTiempo = new StringBuilder(); //Esto nos concatenara si hay dias meses o años
 
         if(periodo.getYears()!=0)
         {
             strTiempo.append("Años: " + periodo.getYears());
         }
-
         if(periodo.getMonths()!=0)
         {
             strTiempo.append(" Meses: " + periodo.getMonths());
@@ -204,7 +191,7 @@ public class VueloServicio implements IVueloServicio {
             strTiempo.append(" Días: " + periodo.getDays());
         }
 
-        String tiempoViaje = strTiempo.toString();
+        String tiempoViaje = strTiempo.toString();   //se pasa a string
         return new VueloDTO(v.getId(), v.getNombreVuelo(),v.getEmpresa(),v.getLugarSalida(),v.getLugarLlegada(),v.getFechaSalida(),v.getFechaLlegada(),tiempoViaje);
     }
 
