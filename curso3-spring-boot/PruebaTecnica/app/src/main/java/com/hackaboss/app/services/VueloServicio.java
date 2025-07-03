@@ -72,19 +72,19 @@ public class VueloServicio implements IVueloServicio {
 
                 Map<String,List<VueloDTO>> vuelosAgrupados = Map.of();
 
-                if(ordenarPor.equals("empresa"))
+                if(ordenarPor.equals("empresa"))  //agrupacion por empresas
                 {
                     vuelosAgrupados = VuelosFiltrados.stream()
                             .collect(Collectors.groupingBy(VueloDTO::getEmpresa));
                 }
-                if(ordenarPor.equals("lugarLlegada"))
+                if(ordenarPor.equals("lugarLlegada"))                       //agrupacionpor lugarLLegada
                 {
 
                     vuelosAgrupados = VuelosFiltrados.stream()
                             .collect(Collectors.groupingBy(VueloDTO::getLugarLlegada));
                 }
 
-
+                                                          //la agrupacion lo pasa a list
                 VuelosFiltrados = vuelosAgrupados.values().stream()
                         .flatMap(List::stream)
                         .collect(Collectors.toList());
