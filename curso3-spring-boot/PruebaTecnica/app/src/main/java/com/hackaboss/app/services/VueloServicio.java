@@ -38,7 +38,6 @@ public class VueloServicio implements IVueloServicio {
 
     @Override
     public ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String lugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada, String ordenarPor) {
-        System.out.println(ordenarPor);
         if(this.vuelos==null)
         {
             VueloRespuesta vRespuesta =  new VueloRespuesta(
