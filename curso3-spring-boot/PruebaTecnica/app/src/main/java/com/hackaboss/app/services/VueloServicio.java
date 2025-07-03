@@ -29,7 +29,11 @@ public class VueloServicio implements IVueloServicio {
         vuelos.add(new Vuelo(3, "H003-V", "Iberia", "Berlín", "Nueva York", LocalDate.of(2025, 5, 12), LocalDate.of(2025, 5, 12)));
         vuelos.add(new Vuelo(4, "H004-V", "American Airlines", "Miami", "Lima", LocalDate.of(2025, 6, 20), LocalDate.of(2025, 6, 21)));
         vuelos.add(new Vuelo(5, "H005-V", "LATAM", "Santiago", "Buenos Aires", LocalDate.of(2025, 7, 1), LocalDate.of(2025, 7, 1)));
-
+        vuelos.add(new Vuelo(6, "H006-V", "Iberia", "Valencia", "Buenos Aires", LocalDate.of(2025, 8, 10), LocalDate.of(2025, 8, 11)));
+        vuelos.add(new Vuelo(7, "H007-V", "LATAM", "Bogotá", "Lima", LocalDate.of(2025, 9, 15), LocalDate.of(2025, 9, 16)));
+        vuelos.add(new Vuelo(8, "H008-V", "Air France", "Marsella", "Buenos Aires", LocalDate.of(2025, 10, 5), LocalDate.of(2025, 10, 6)));
+        vuelos.add(new Vuelo(9, "H009-V", "American Airlines", "Los Ángeles", "Nueva York", LocalDate.of(2025, 11, 12), LocalDate.of(2025, 11, 13)));
+        vuelos.add(new Vuelo(10, "H010-V", "Iberia", "Madrid", "Lima", LocalDate.of(2025, 12, 1), LocalDate.of(2025, 12, 2)));
     }
 
     @Override
