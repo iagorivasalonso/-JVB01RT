@@ -25,8 +25,9 @@ public class VueloController {
                                             @RequestParam(required = false) String lugarSalida,
                                             @RequestParam(required = false) String lugarLLegada,
                                             @RequestParam(required = false) LocalDate fechaSalida,
-                                            @RequestParam(required = false) LocalDate fechaLLegada) {
-        return this.vueloServicioInterfaz.todosLosVuelos(nombreVuelo,empresa,lugarSalida,lugarLLegada,fechaSalida,fechaLLegada);
+                                            @RequestParam(required = false) LocalDate fechaLLegada,
+                                            @RequestParam(required = false) String ordenarPor) {
+        return this.vueloServicioInterfaz.todosLosVuelos(nombreVuelo,empresa,lugarSalida,lugarLLegada,fechaSalida,fechaLLegada,ordenarPor);
     }
 
     //    http://localhost:8080/vuelos/2

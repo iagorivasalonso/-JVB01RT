@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 public interface IVueloServicio {
 
-    ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String LugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada);
+    ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String LugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada, String ordenarPor);
     ResponseEntity<?>busquedaVuelo(int id);
     ResponseEntity<?> insertarVuelos(VueloDTO v);;
     ResponseEntity<?> eliminarVuelo(int id);

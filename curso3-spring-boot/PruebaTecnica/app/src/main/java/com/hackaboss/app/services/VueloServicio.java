@@ -4,16 +4,15 @@ import com.hackaboss.app.dtos.VueloDTO;
 import com.hackaboss.app.models.Vuelo;
 import com.hackaboss.app.response.VueloRespuesta;
 import com.hackaboss.app.utils.Fechas;
+import jakarta.validation.constraints.Max;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class VueloServicio implements IVueloServicio {
@@ -26,7 +25,7 @@ public class VueloServicio implements IVueloServicio {
 
         this.vuelos = new ArrayList<>();                      //carga de datos
         vuelos.add(new Vuelo(1, "H001-V", "Iberia", "Madrid", "Buenos Aires", LocalDate.of(2025, 3, 10), LocalDate.of(2025, 3, 11)));
-        vuelos.add(new Vuelo(2, "H002-V", "Air France", "París", "Ciudad de México", LocalDate.of(2025, 4, 5), LocalDate.of(2025, 4, 6)));
+        vuelos.add(new Vuelo(2, "H002-V", "Air France", "París", "Lima", LocalDate.of(2025, 4, 5), LocalDate.of(2025, 4, 6)));
         vuelos.add(new Vuelo(3, "H003-V", "Iberia", "Berlín", "Nueva York", LocalDate.of(2025, 5, 12), LocalDate.of(2025, 5, 12)));
         vuelos.add(new Vuelo(4, "H004-V", "American Airlines", "Miami", "Lima", LocalDate.of(2025, 6, 20), LocalDate.of(2025, 6, 21)));
         vuelos.add(new Vuelo(5, "H005-V", "LATAM", "Santiago", "Buenos Aires", LocalDate.of(2025, 7, 1), LocalDate.of(2025, 7, 1)));
@@ -34,8 +33,8 @@ public class VueloServicio implements IVueloServicio {
     }
 
     @Override
-    public ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String lugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada) {
-
+    public ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String lugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada, String ordenarPor) {
+        System.out.println(ordenarPor);
         if(this.vuelos==null)
         {
             VueloRespuesta vRespuesta =  new VueloRespuesta(
@@ -67,8 +66,29 @@ public class VueloServicio implements IVueloServicio {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(vRespuesta);
             }
             else{
+
+                Map<String,List<VueloDTO>> vuelosAgrupados = Map.of();
+
+                if(ordenarPor.equals("empresa"))
+                {
+                    vuelosAgrupados = VuelosFiltrados.stream()
+                            .collect(Collectors.groupingBy(VueloDTO::getEmpresa));
+                }
+                if(ordenarPor.equals("lugarLlegada"))
+                {
+
+                    vuelosAgrupados = VuelosFiltrados.stream()
+                            .collect(Collectors.groupingBy(VueloDTO::getLugarLlegada));
+                }
+
+
+                VuelosFiltrados = vuelosAgrupados.values().stream()
+                        .flatMap(List::stream)
+                        .collect(Collectors.toList());
+
                 return ResponseEntity.ok(VuelosFiltrados);
             }
+
         }
 
     }
@@ -115,7 +135,7 @@ public class VueloServicio implements IVueloServicio {
                     .body(new VueloRespuesta("La fecha de salida no puede ser antes de la de llegada ",HttpStatus.NO_CONTENT.value(), LocalDate.now()));
         }
         v.setId(vuelos.size() + 1);
-        return this.todosLosVuelos(null,null,null, null, null, null);
+        return this.todosLosVuelos(null,null,null, null, null, null, null);
     }
 
 
