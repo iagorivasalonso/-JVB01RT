@@ -69,25 +69,28 @@ public class VueloServicio implements IVueloServicio {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(vRespuesta);
             }
             else{
+                  if(ordenarPor!=null)
+                  {
+                      Map<String,List<VueloDTO>> vuelosAgrupados = Map.of();
 
-                Map<String,List<VueloDTO>> vuelosAgrupados = Map.of();
+                      if(ordenarPor.equals("empresa"))  //agrupacion por empresas
+                      {
+                          vuelosAgrupados = VuelosFiltrados.stream()
+                                  .collect(Collectors.groupingBy(VueloDTO::getEmpresa));
+                      }
+                      if(ordenarPor.equals("lugarLlegada"))                       //agrupacionpor lugarLLegada
+                      {
 
-                if(ordenarPor.equals("empresa"))  //agrupacion por empresas
-                {
-                    vuelosAgrupados = VuelosFiltrados.stream()
-                            .collect(Collectors.groupingBy(VueloDTO::getEmpresa));
-                }
-                if(ordenarPor.equals("lugarLlegada"))                       //agrupacionpor lugarLLegada
-                {
+                          vuelosAgrupados = VuelosFiltrados.stream()
+                                  .collect(Collectors.groupingBy(VueloDTO::getLugarLlegada));
+                      }
 
-                    vuelosAgrupados = VuelosFiltrados.stream()
-                            .collect(Collectors.groupingBy(VueloDTO::getLugarLlegada));
-                }
+                      //la agrupacion lo pasa a list
+                      VuelosFiltrados = vuelosAgrupados.values().stream()
+                              .flatMap(List::stream)
+                              .collect(Collectors.toList());
+                  }
 
-                                                          //la agrupacion lo pasa a list
-                VuelosFiltrados = vuelosAgrupados.values().stream()
-                        .flatMap(List::stream)
-                        .collect(Collectors.toList());
 
                 return ResponseEntity.ok(VuelosFiltrados);
             }
