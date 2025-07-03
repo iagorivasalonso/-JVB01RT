@@ -34,7 +34,7 @@ public class VueloServicio implements IVueloServicio {
     }
 
     @Override
-    public ResponseEntity<?> todosLosVuelos(String empresa,String lugarLLegada,String fechaLLegada) {
+    public ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String lugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada) {
 
         if(this.vuelos==null)
         {
@@ -47,9 +47,13 @@ public class VueloServicio implements IVueloServicio {
         }
         else
         {
-            List<VueloDTO> VuelosFiltrados = this.vuelos.stream()                                         //Lista y filtrado de todos los vuelos
+            List<VueloDTO> VuelosFiltrados = this.vuelos.stream()//Lista y filtrado de todos los vuelos
+                    .filter(Vuelo -> nombreVuelo == null || Vuelo.getNombreVuelo().equalsIgnoreCase(nombreVuelo))
                     .filter(Vuelo -> empresa == null || Vuelo.getEmpresa().equalsIgnoreCase(empresa))
-                    .filter(Vuelo -> lugarLLegada == null || Vuelo.getLugarLlegada().equalsIgnoreCase(lugarLLegada))
+                    .filter(Vuelo -> lugarSalida == null || Vuelo.getLugarSalida().equalsIgnoreCase(lugarSalida))
+                    .filter(Vuelo -> lugarLlegada == null || Vuelo.getLugarLlegada().equalsIgnoreCase(lugarLlegada))
+                    .filter(Vuelo -> fechaSalida == null || Vuelo.getFechaSalida().isEqual(fechaSalida))
+                    .filter(Vuelo -> fechaLlegada == null || Vuelo.getFechaSalida().isEqual(fechaLlegada))
                     .sorted(Comparator.comparing(Vuelo::getNombreVuelo))
                     .map(this::mapeoVueloToDTO).toList();
 
@@ -111,7 +115,7 @@ public class VueloServicio implements IVueloServicio {
                     .body(new VueloRespuesta("La fecha de salida no puede ser antes de la de llegada ",HttpStatus.NO_CONTENT.value(), LocalDate.now()));
         }
         v.setId(vuelos.size() + 1);
-        return this.todosLosVuelos(null,null,null);
+        return this.todosLosVuelos(null,null,null, null, null, null);
     }
 
 

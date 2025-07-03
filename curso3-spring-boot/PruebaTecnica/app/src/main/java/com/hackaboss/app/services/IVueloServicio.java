@@ -5,9 +5,11 @@ import com.hackaboss.app.models.Vuelo;
 import com.hackaboss.app.response.VueloRespuesta;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
+
 public interface IVueloServicio {
 
-    ResponseEntity<?> todosLosVuelos(String empresa,String lugarLLegada,String fechaLLegada);
+    ResponseEntity<?> todosLosVuelos(String nombreVuelo, String empresa, String LugarSalida, String lugarLlegada, LocalDate fechaSalida, LocalDate fechaLlegada);
     ResponseEntity<?>busquedaVuelo(int id);
     ResponseEntity<?> insertarVuelos(VueloDTO v);;
     ResponseEntity<?> eliminarVuelo(int id);

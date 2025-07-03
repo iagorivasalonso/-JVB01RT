@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -19,10 +20,13 @@ public class VueloController {
 
     //    http://localhost:8080/vuelos
     @GetMapping("/vuelos")
-    public ResponseEntity<?> todosLosVuelos(@RequestParam(required = false) String empresa,
-                                          @RequestParam(required = false) String lugarLLegada,
-                                          @RequestParam(required = false) String fechaLLegada) {
-        return this.vueloServicioInterfaz.todosLosVuelos(empresa,lugarLLegada,fechaLLegada);
+    public ResponseEntity<?> todosLosVuelos(@RequestParam(required = false) String nombreVuelo,
+                                            @RequestParam(required = false) String empresa,
+                                            @RequestParam(required = false) String lugarSalida,
+                                            @RequestParam(required = false) String lugarLLegada,
+                                            @RequestParam(required = false) LocalDate fechaSalida,
+                                            @RequestParam(required = false) LocalDate fechaLLegada) {
+        return this.vueloServicioInterfaz.todosLosVuelos(nombreVuelo,empresa,lugarSalida,lugarLLegada,fechaSalida,fechaLLegada);
     }
 
     //    http://localhost:8080/vuelos/2
