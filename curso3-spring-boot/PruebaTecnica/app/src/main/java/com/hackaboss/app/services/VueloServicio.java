@@ -170,7 +170,7 @@ public class VueloServicio implements IVueloServicio {
         else
         {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new VueloRespuesta("No se pudo eliminar el id " + id,HttpStatus.NO_CONTENT.value(), LocalDate.now()));
+                    .body(new VueloRespuesta("No se pudo eliminar el id " + id,HttpStatus.NOT_FOUND.value(), LocalDate.now()));
         }
     }
 
