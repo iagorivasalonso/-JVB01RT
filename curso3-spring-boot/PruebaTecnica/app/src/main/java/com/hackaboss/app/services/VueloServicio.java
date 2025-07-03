@@ -160,7 +160,7 @@ public class VueloServicio implements IVueloServicio {
     }
 
     @Override
-    public ResponseEntity<?> eliminarVuelo(int id) {                                             //elimina el vuelo
+    public ResponseEntity<VueloRespuesta> eliminarVuelo(int id) {                                             //elimina el vuelo
         boolean eliminado = this.vuelos.removeIf(v -> v.getId() == id);
         if (eliminado)
         {
