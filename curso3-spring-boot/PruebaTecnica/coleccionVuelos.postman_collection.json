@@ -13,6 +13,54 @@
 				"method": "GET",
 				"header": [],
 				"url": {
+					"raw": "http://localhost:8080/vuelos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vuelos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vuelos Filtros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/vuelos?empresa=Iberia&ordenarPor=lugarLlegada",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"vuelos"
+					],
+					"query": [
+						{
+							"key": "empresa",
+							"value": "Iberia"
+						},
+						{
+							"key": "ordenarPor",
+							"value": "lugarLlegada"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vuelo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
 					"raw": "http://localhost:8080/vuelos/2",
 					"protocol": "http",
 					"host": [
@@ -28,18 +76,19 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/vuelos/2",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "vuelos",
+			"name": "vuelo",
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "       {\r\n        \"publicNombreVuelo\": \"H015-V\",\r\n        \"publicEmpresa\": \"Iberia\",\r\n        \"publicLugarSalida\": \"Madrid\",\r\n        \"publicLugarLlegada\": \"Roma\",\r\n        \"publicFechaSalida\": \"2025-12-01\",\r\n        \"publicFechaLlegada\": \"2025-12-12\"\r\n       }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/vuelos",
 					"protocol": "http",
@@ -55,10 +104,19 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/vuelos/2",
+			"name": "Vuelo",
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n        \"publicNombreVuelo\": \"H010-V\",\r\n        \"publicEmpresa\": \"Iberia\",\r\n        \"publicLugarSalida\": \"Madrid\",\r\n        \"publicLugarLlegada\": \"Lima\",\r\n        \"publicFechaSalida\": \"2024-12-01\",\r\n        \"publicFechaLlegada\": \"2025-12-02\",\r\n        \"publicDuracionViaje\": \" Días: 1\"\r\n        }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:8080/vuelos/2",
 					"protocol": "http",
@@ -75,7 +133,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/vuelos/2",
+			"name": "vuelo",
 			"request": {
 				"method": "DELETE",
 				"header": [],
