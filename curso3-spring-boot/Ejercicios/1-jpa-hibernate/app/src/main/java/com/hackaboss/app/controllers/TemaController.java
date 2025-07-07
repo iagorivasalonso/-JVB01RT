@@ -21,7 +21,7 @@ public class TemaController {
     }
 
     @PutMapping("/{id}")
-    public TemaDTO modificarCurso(@PathVariable int id){
+    public TemaDTO modificarTema(@PathVariable int id){
           return temaServicioInterfaz.modificarTema(id);
     }
 
