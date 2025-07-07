@@ -24,5 +24,5 @@ public class CursoDTO {
     @JsonProperty("cursoFechaFin")
     private Date fecha_finalizacion;
     @JsonProperty("cursoListaTemas")
-    private List<Tema> listaTemas;
+    private List<TemaDTO> listaTemas;
 }
