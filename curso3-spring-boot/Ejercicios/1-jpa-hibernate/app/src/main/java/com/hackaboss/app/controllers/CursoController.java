@@ -27,15 +27,16 @@ public class CursoController {
       return cursoServicioInterfaz.listaCursos();
     }
 
-    @GetMapping("/obtener{nombre}")
+    @GetMapping("/obtener/{nombre}")
     public List<?> obtenerPorNombre(@PathVariable String nombre){
          return cursoServicioInterfaz.filtrarPorNombres(nombre);
     }
 
 
-    @GetMapping("/temasCurso")
-    public List<?> obtenerTemasCurso(){
-        return cursoServicioInterfaz.ObtenerTemas();
+    @GetMapping("/temasCurso/{nombre}")
+    public List<?> obtenerTemasCurso(@PathVariable String nombre){
+        System.out.println("Entra=====================================");
+        return cursoServicioInterfaz.ObtenerTemas(nombre);
     }
 
     @PutMapping("/{id}")
