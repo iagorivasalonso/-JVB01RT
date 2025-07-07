@@ -3,9 +3,11 @@ package com.hackaboss.app.services.interfaces;
 import com.hackaboss.app.dtos.CursoDTO;
 import com.hackaboss.app.models.Curso;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ICursoServicio {
     CursoDTO crearCurso();
 
@@ -13,7 +15,7 @@ public interface ICursoServicio {
 
     List<?> filtrarPorNombres(String nombre);
 
-    List<?> ObtenerTemas();
+    List<?> ObtenerTemas(String nombre);
 
     ResponseEntity<?> modificarCurso(int id);
 
