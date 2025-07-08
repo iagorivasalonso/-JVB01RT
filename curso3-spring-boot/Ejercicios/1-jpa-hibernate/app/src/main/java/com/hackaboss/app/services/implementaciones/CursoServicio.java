@@ -3,8 +3,8 @@ package com.hackaboss.app.services.implementaciones;
 import com.hackaboss.app.dtos.CursoDTO;
 import com.hackaboss.app.dtos.TemaDTO;
 import com.hackaboss.app.models.Curso;
-import com.hackaboss.app.models.Tema;
 import com.hackaboss.app.repositories.ICursoRepository;
+import com.hackaboss.app.repositories.ITemaRepository;
 import com.hackaboss.app.services.interfaces.ICursoServicio;
 import com.hackaboss.app.services.interfaces.ITemaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class CursoServicio implements ICursoServicio {
