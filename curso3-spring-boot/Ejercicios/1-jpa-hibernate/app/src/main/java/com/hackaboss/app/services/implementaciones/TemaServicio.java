@@ -2,14 +2,28 @@ package com.hackaboss.app.services.implementaciones;
 
 import com.hackaboss.app.dtos.TemaDTO;
 import com.hackaboss.app.models.Tema;
+import com.hackaboss.app.repositories.ITemaRepository;
 import com.hackaboss.app.services.interfaces.ITemaServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TemaServicio implements ITemaServicio {
+
+    @Autowired
+    ITemaRepository repository;
+
     @Override
-    public TemaDTO crearTema() {
-        return null;
+    public TemaDTO crearTema(TemaDTO temaDTO) {
+
+        Tema tema = new Tema();
+        tema.setNombre(temaDTO.getNombre());
+        tema.setDescripcion(temaDTO.getDescripcion());
+
+        Tema temaGuardado = repository.save(tema);
+        return mapeoToDTO(temaGuardado);
     }
 
     @Override
@@ -24,6 +38,6 @@ public class TemaServicio implements ITemaServicio {
 
     @Override
     public Tema mapeoToOBJ(TemaDTO t) {
-        return null;
+        return new Tema(t.getId_tema(),t.getNombre(),t.getDescripcion());
     }
 }
