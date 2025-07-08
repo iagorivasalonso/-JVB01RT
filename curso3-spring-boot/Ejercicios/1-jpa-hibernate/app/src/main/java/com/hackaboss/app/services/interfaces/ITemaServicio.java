@@ -5,7 +5,7 @@ import com.hackaboss.app.models.Tema;
 
 public interface ITemaServicio {
 
-    TemaDTO crearTema();
+    TemaDTO crearTema(TemaDTO tema);
 
     TemaDTO modificarTema(int id);
 
