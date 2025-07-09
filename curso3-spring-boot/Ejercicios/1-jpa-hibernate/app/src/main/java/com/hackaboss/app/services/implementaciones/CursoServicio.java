@@ -88,7 +88,6 @@ public class CursoServicio implements ICursoServicio {
 
     @Override
     public Curso mapeoToOBJ(CursoDTO c) {
-
         List<Tema> temas = c.getListaTemas().stream().map(its::mapeoToOBJ).toList();
         return new Curso(c.getId_curso(),c.getNombre(),c.getTipo_curso(),c.getFecha_finalizacion(),temas);
     }
