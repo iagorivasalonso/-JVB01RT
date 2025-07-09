@@ -3,6 +3,7 @@ package com.hackaboss.app.services.implementaciones;
 import com.hackaboss.app.dtos.CursoDTO;
 import com.hackaboss.app.dtos.TemaDTO;
 import com.hackaboss.app.models.Curso;
+import com.hackaboss.app.models.Tema;
 import com.hackaboss.app.repositories.ICursoRepository;
 import com.hackaboss.app.repositories.ITemaRepository;
 import com.hackaboss.app.services.interfaces.ICursoServicio;
@@ -74,6 +75,7 @@ public class CursoServicio implements ICursoServicio {
 
     @Override
     public Curso mapeoToOBJ(CursoDTO c) {
-        return null;
+        List<Tema> temas = c.getListaTemas().stream().map(its::mapeoToOBJ).toList();
+        return new Curso(c.getId_curso(),c.getNombre(),c.getTipo_curso(),c.getFecha_finalizacion(),temas);
     }
 }
