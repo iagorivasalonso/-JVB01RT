@@ -17,7 +17,7 @@ public interface ICursoServicio {
 
     List<?> ObtenerTemas(String nombre);
 
-    ResponseEntity<?> modificarCurso(int id);
+    CursoDTO modificarCurso(int id, CursoDTO curso);
 
 
 

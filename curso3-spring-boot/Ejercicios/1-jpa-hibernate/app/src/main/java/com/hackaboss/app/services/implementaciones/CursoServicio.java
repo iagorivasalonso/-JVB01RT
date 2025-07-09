@@ -5,7 +5,6 @@ import com.hackaboss.app.dtos.TemaDTO;
 import com.hackaboss.app.models.Curso;
 import com.hackaboss.app.models.Tema;
 import com.hackaboss.app.repositories.ICursoRepository;
-import com.hackaboss.app.repositories.ITemaRepository;
 import com.hackaboss.app.services.interfaces.ICursoServicio;
 import com.hackaboss.app.services.interfaces.ITemaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +62,22 @@ public class CursoServicio implements ICursoServicio {
     }
 
     @Override
-    public ResponseEntity<?> modificarCurso(int id) {
-        return null;
+    public CursoDTO modificarCurso(int id, CursoDTO c) {
+
+        Boolean existe = repository.existsById(id);
+
+        if(existe)
+        {
+            c.setId_curso(id);
+            Curso curso = this.mapeoToOBJ(c);
+            Curso cursoActualizado = repository.save(curso);
+            System.err.println( cursoActualizado);
+            return this.mapeoToDTO(cursoActualizado);
+        }
+        else
+        {
+            return new CursoDTO();
+        }
     }
 
     @Override
@@ -75,6 +88,7 @@ public class CursoServicio implements ICursoServicio {
 
     @Override
     public Curso mapeoToOBJ(CursoDTO c) {
+
         List<Tema> temas = c.getListaTemas().stream().map(its::mapeoToOBJ).toList();
         return new Curso(c.getId_curso(),c.getNombre(),c.getTipo_curso(),c.getFecha_finalizacion(),temas);
     }

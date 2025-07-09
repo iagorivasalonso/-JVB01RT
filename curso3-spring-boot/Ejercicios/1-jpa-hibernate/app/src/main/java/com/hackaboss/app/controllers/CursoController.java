@@ -40,7 +40,7 @@ public class CursoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> modificarCurso(@PathVariable int id){
-        return cursoServicioInterfaz.modificarCurso(id);
+    public CursoDTO modificarCurso(@PathVariable int id,@RequestBody CursoDTO curso){
+        return cursoServicioInterfaz.modificarCurso(id,curso);
     }
 }
