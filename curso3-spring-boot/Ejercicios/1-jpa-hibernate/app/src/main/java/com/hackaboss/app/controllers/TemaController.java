@@ -1,11 +1,9 @@
 package com.hackaboss.app.controllers;
 
 import com.hackaboss.app.dtos.TemaDTO;
-import com.hackaboss.app.models.Tema;
 import com.hackaboss.app.services.interfaces.ITemaServicio;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/temas")
@@ -18,14 +16,14 @@ public class TemaController {
     }
 
     @PostMapping("/nuevo")
-    public TemaDTO nuevoTema (@RequestBody TemaDTO tema) {
+    public TemaDTO nuevoTema (@RequestBody TemaDTO t) {
 
-        return temaServicioInterfaz.crearTema(tema);
+        return temaServicioInterfaz.crearTema(t);
     }
 
     @PutMapping("/{id}")
-    public TemaDTO modificarTema(@PathVariable int id){
-          return temaServicioInterfaz.modificarTema(id);
+    public TemaDTO modificarTema(@PathVariable int id,@RequestBody TemaDTO tema){
+          return temaServicioInterfaz.modificarTema(id,tema);
     }
 
 }

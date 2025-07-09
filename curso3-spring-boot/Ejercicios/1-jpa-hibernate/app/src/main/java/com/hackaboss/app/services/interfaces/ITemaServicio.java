@@ -7,7 +7,7 @@ public interface ITemaServicio {
 
     TemaDTO crearTema(TemaDTO tema);
 
-    TemaDTO modificarTema(int id);
+    TemaDTO modificarTema(int id, TemaDTO temaDTO);
 
 
 

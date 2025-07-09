@@ -27,8 +27,22 @@ public class TemaServicio implements ITemaServicio {
     }
 
     @Override
-    public TemaDTO modificarTema(int id) {
-        return null;
+    public TemaDTO modificarTema(int id, TemaDTO t) {
+
+        Boolean existe = repository.existsById(id);
+
+        if(existe)
+        {
+            t.setId_tema(id);
+            Tema tema = this.mapeoToOBJ(t);
+            Tema temaActualizado = repository.save(tema);
+            return this.mapeoToDTO(temaActualizado);
+        }
+        else
+        {
+            return new TemaDTO();
+        }
+
     }
 
     @Override
