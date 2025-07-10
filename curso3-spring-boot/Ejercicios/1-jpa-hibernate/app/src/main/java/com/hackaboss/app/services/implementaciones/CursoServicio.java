@@ -8,7 +8,6 @@ import com.hackaboss.app.repositories.ICursoRepository;
 import com.hackaboss.app.services.interfaces.ICursoServicio;
 import com.hackaboss.app.services.interfaces.ITemaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +52,7 @@ public class CursoServicio implements ICursoServicio {
 
         Curso cursoEncontrado = cursos.stream()
                 .filter(c-> c.getNombre().equals(nombre)).findFirst().orElse(null);
-        System.err.println(cursoEncontrado);
+
         List<TemaDTO> listaTemas = cursoEncontrado.getListaTemas()
                 .stream().map(its::mapeoToDTO)
                 .toList();
