@@ -26,8 +26,9 @@ public class Curso {
 
     private Date fecha_finalizacion;
 
-    @OneToMany
-    @JoinColumn(name="curso_id")
+
+    //relaciones
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
     private List<Tema> listaTemas;
 
 }

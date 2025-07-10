@@ -51,6 +51,6 @@ public class TemaServicio implements ITemaServicio {
 
     @Override
     public Tema mapeoToOBJ(TemaDTO t) {
-        return new Tema(t.getId_tema(),t.getNombre(),t.getDescripcion());
+        return new Tema(t.getId_tema(),t.getNombre(),t.getDescripcion(),null);
     }
 }
