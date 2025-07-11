@@ -35,9 +35,7 @@ public class CursoServicio implements ICursoServicio {
              tema.setNombre(temaDTO.getNombre());
              tema.setDescripcion(temaDTO.getDescripcion());
              tema.setCurso(cursoNuevo);
-
              return tema;
-
         }).toList();
         cursoNuevo.setListaTemas(temas);
 
