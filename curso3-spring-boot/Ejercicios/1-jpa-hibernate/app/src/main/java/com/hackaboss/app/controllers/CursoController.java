@@ -19,7 +19,7 @@ public class CursoController {
 
     @PostMapping("/nuevo")
     public CursoDTO nuevoCurso (@RequestBody CursoDTO c) {
-        System.out.println("1");
+
         return cursoServicioInterfaz.crearCurso(c);
     }
 
