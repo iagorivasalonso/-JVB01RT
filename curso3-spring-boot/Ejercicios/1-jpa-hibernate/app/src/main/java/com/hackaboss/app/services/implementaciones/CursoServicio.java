@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CursoServicio implements ICursoServicio {
@@ -22,8 +23,27 @@ public class CursoServicio implements ICursoServicio {
     ITemaServicio its;
 
     @Override
-    public CursoDTO crearCurso() {
-        return null;
+    public CursoDTO crearCurso(CursoDTO cursoDTO) {
+
+        Curso cursoNuevo = new Curso();
+        cursoNuevo.setNombre(cursoDTO.getNombre());
+        cursoNuevo.setTipo_curso(cursoDTO.getTipo_curso());
+        cursoNuevo.setFecha_finalizacion(cursoDTO.getFecha_finalizacion());
+
+        List<Tema> temas = cursoDTO.getListaTemas().stream().map( temaDTO -> {
+             Tema tema = new Tema();
+             tema.setNombre(temaDTO.getNombre());
+             tema.setDescripcion(temaDTO.getDescripcion());
+             tema.setCurso(cursoNuevo);
+
+             return tema;
+
+        }).toList();
+        cursoNuevo.setListaTemas(temas);
+
+        cursoDTO = mapeoToDTO(cursoNuevo);
+        repository.save(cursoNuevo);
+        return cursoDTO;
     }
 
     @Override

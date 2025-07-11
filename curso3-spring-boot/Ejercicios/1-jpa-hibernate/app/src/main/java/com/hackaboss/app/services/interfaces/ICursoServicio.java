@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface ICursoServicio {
-    CursoDTO crearCurso();
+    CursoDTO crearCurso(CursoDTO curso);
 
     List<?> listaCursos();
 

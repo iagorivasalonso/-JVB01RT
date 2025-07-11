@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Curso {
 
 
     //relaciones
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
-    private List<Tema> listaTemas;
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tema> listaTemas = new ArrayList<>();
 
 }
